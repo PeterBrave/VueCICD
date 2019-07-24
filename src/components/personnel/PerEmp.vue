@@ -68,7 +68,7 @@
         }).then(resp=>{
           _this.loading = false;
           if (resp && resp.status == 200) {
-            this.$router.push({path:'/per/ec'});
+            this.$router.push({path:'/config/server'});
             this.$message('提交成功！');
           }
         })

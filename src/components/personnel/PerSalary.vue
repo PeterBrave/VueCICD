@@ -30,7 +30,7 @@
         }).then(resp=>{
           _this.loading = false;
           if (resp && resp.status == 200) {
-
+            this.$router.push({path:'/output'});
           }
         })
       }

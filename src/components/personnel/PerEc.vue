@@ -79,7 +79,7 @@
           if (resp && resp.status == 200) {
             var data = resp.data;
             alert(data);
-            this.$router.push({path:'/per/train'});
+            this.$router.push({path:'/config/kfile'});
             this.$message('提交成功！');
 
           }
