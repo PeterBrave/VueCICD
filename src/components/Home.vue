@@ -14,9 +14,9 @@
             style="width: 40px;height: 40px;margin-right: 5px;margin-left: 5px;border-radius: 40px"/></i>
   </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item>设置</el-dropdown-item>
-              <el-dropdown-item command="logout" divided>注销</el-dropdown-item>
+              <el-dropdown-item>Account Center</el-dropdown-item>
+              <el-dropdown-item>Setting</el-dropdown-item>
+              <el-dropdown-item command="logout" divided>Log Out</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -44,7 +44,7 @@
         </el-aside>
           <el-main>
             <el-breadcrumb separator-class="el-icon-arrow-right">
-              <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+              <el-breadcrumb-item :to="{ path: '/home' }">Home</el-breadcrumb-item>
               <el-breadcrumb-item v-text="this.$router.currentRoute.name"></el-breadcrumb-item>
             </el-breadcrumb>
 
@@ -94,9 +94,9 @@
       handleCommand(cmd){
         var _this = this;
         if (cmd == 'logout') {
-          this.$confirm('注销登录, 是否继续?', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
+          this.$confirm('Are you sure to log out?', 'Hint', {
+            confirmButtonText: 'Confirm',
+            cancelButtonText: 'Cancel',
             type: 'warning'
           }).then(() => {
             _this.getRequest("/logout");
@@ -105,7 +105,7 @@
           }).catch(() => {
             _this.$message({
               type: 'info',
-              message: '取消'
+              message: 'Cancel'
             });
           });
         }

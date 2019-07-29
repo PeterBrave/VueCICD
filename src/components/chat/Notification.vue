@@ -2,7 +2,7 @@
   <div>
     <el-container>
       <el-header style="text-align: left;padding-left: 0px">
-        <el-button type="success" size="mini" plain icon="el-icon-success" @click="allRead">全部标为已读</el-button>
+        <el-button type="success" size="mini" plain icon="el-icon-success" @click="allRead">All Marked As Read</el-button>
         <el-button type="primary" size="mini" plain v-if="isAdmin" @click="dialogVisible = true"><i
           class="fa fa-send"
           style="margin-right: 15px"></i>发送系统通知
@@ -28,7 +28,7 @@
             </div>
           </el-collapse-item>
         </el-collapse>
-        <div style="color: #ea0206;font-size: 18px;text-align: center" v-if="sysmsgs.length==0">暂无通知</div>
+        <div style="color: #ea0206;font-size: 18px;text-align: center" v-if="sysmsgs.length==0">No Notification Now</div>
       </el-main>
     </el-container>
     <div style="text-align: left">

@@ -2,18 +2,17 @@
 <template>
   <div class="container">
     <el-steps :active="2" align-center class="process">
-      <el-step title="创建任务" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="配置服务器" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="配置jenkinsfile" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="构建任务" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="获取构建结果" description="这是一段很长很长很长的描述性文字"></el-step>
+      <el-step title="Create Job"></el-step>
+      <el-step title="Configure Server"></el-step>
+      <el-step title="Configure JenkinsFile"></el-step>
+      <el-step title="Build Job"></el-step>
+      <el-step title="Get Building Result"></el-step>
     </el-steps>
-
     <div class="monaco-container" style="text-align: left">
-      <div class="title">Jenkinsfile</div>
+      <div class="title">JenkinsFile</div>
       <div ref="container" class="monaco-editor" style="height: 250px;"></div>
     </div>
-    <el-button class="button" type="primary" plain @click="submitJenkinsfile">提交</el-button>
+    <el-button class="button" type="primary" plain @click="submitJenkinsfile">Submit</el-button>
 
   </div>
 

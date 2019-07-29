@@ -4,6 +4,7 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Home from '@/components/Home'
 import Chat from '@/components/chat/Chat'
+
 // import EmpAdv from '@/components/emp/EmpAdv'
 // import EmpBasic from '@/components/emp/EmpBasic'
 // import PerEc from '@/components/personnel/PerEc'
@@ -41,9 +42,9 @@ export default new Router({
       name: 'Register',
       component: Register,
       hidden: true
-    }, {
+    },{
       path: '/home',
-      name: '主页',
+      name: 'Homepage',
       component: Home,
       hidden: true,
       meta: {
@@ -52,7 +53,7 @@ export default new Router({
       children: [
         {
           path: '/chat',
-          name: '消息',
+          name: 'Message',
           component: Chat,
           hidden: true,
           meta: {

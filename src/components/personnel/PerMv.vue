@@ -1,18 +1,18 @@
 <template>
   <div class="container">
     <el-steps :active="4" align-center>
-      <el-step title="创建任务" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="配置服务器" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="配置jenkinsfile" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="构建任务" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="获取构建结果" description="这是一段很长很长很长的描述性文字"></el-step>
+      <el-step title="Create Job"></el-step>
+      <el-step title="Configure Server"></el-step>
+      <el-step title="Configure JenkinsFile"></el-step>
+      <el-step title="Build Job"></el-step>
+      <el-step title="Get Building Result"></el-step>
     </el-steps>
-    <h1>构建任务</h1>
-    <el-button class="button" type="primary" plain @click="startBuild">获取构建结果</el-button>
+    <h1>Build Job</h1>
+    <el-button class="button" type="primary" plain @click="startBuild">Get Building Result</el-button>
     <el-input
       type="textarea"
       :rows="32"
-      placeholder="控制台输出:"
+      placeholder="ConsoleOutput:"
       v-model="textarea">
     </el-input>
 

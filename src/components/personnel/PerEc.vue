@@ -2,25 +2,24 @@
 <template>
   <div class="container">
     <el-steps :active="1" align-center class="process">
-      <el-step title="创建任务" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="配置服务器" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="配置jenkinsfile" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="构建任务" description="这是一段很长很长很长的描述性文字"></el-step>
-      <el-step title="获取构建结果" description="这是一段很长很长很长的描述性文字"></el-step>
+      <el-step title="Create Job"></el-step>
+      <el-step title="Configure Server"></el-step>
+      <el-step title="Configure JenkinsFile"></el-step>
+      <el-step title="Build Job"></el-step>
+      <el-step title="Get Building Result"></el-step>
     </el-steps>
-
     <el-form label-width="80px" :model="formLabelAlign">
-      <el-form-item label="服务器">
-        <el-select v-model="formLabelAlign.serverId" placeholder="请选择服务器" class="form">
+      <el-form-item label="Server">
+        <el-select v-model="formLabelAlign.serverId" placeholder="Please Select Server" class="form">
           <el-option v-for="(serverInfo, index) in serverList" :key="index" :label="serverInfo.serverName" :value="serverInfo.serverId"></el-option>
         </el-select>
       </el-form-item>
     </el-form>
     <div class="monaco-container" style="text-align: left">
-      <div class="title">请输入将在服务器上执行的bash脚本</div>
+      <div class="title">Please Input Bash Script</div>
       <div ref="container" class="monaco-editor" style="height: 250px;"></div>
     </div>
-    <el-button class="button" type="primary" plain @click="submitBashToServer">提交</el-button>
+    <el-button class="button" type="primary" plain @click="submitBashToServer">Submit</el-button>
 
   </div>
 
@@ -80,7 +79,7 @@
             var data = resp.data;
             alert(data);
             this.$router.push({path:'/config/kfile'});
-            this.$message('提交成功！');
+            this.$message('Submit Successfully!');
 
           }
         })

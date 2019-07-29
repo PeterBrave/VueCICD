@@ -1,29 +1,30 @@
 <template>
   <div id="container">
         <el-steps :active="0" align-center>
-          <el-step title="创建任务" description="这是一段很长很长很长的描述性文字"></el-step>
-          <el-step title="配置服务器" description="这是一段很长很长很长的描述性文字"></el-step>
-          <el-step title="配置jenkinsfile" description="这是一段很长很长很长的描述性文字"></el-step>
-          <el-step title="构建任务" description="这是一段很长很长很长的描述性文字"></el-step>
-          <el-step title="获取构建结果" description="这是一段很长很长很长的描述性文字"></el-step>
+          <el-step title="Create Job"></el-step>
+          <el-step title="Configure Server"></el-step>
+          <el-step title="Configure JenkinsFile"></el-step>
+          <el-step title="Build Job"></el-step>
+          <el-step title="Get Building Result"></el-step>
         </el-steps>
-    <div class="title">请创建jenkins项目</div>
+    <div class="title">Please Create Jenkins Project</div>
+    <br/>
     <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-      <el-form-item label="名称：">
+      <el-form-item label="ProName：">
         <el-input v-model="formLabelAlign.name" class="form"></el-input>
       </el-form-item>
-      <el-form-item label="描述：">
+      <el-form-item label="Description：">
         <el-input type="textarea" v-model="formLabelAlign.desc" class="form"></el-input>
       </el-form-item>
-      <el-form-item label="仓库：">
-        <el-select v-model="formLabelAlign.repo" placeholder="请选择仓库" class="form">
+      <el-form-item label="Repository：">
+        <el-select v-model="formLabelAlign.repo" placeholder="Please Select Repo" class="form">
 
           <el-option v-for="(repoInfo, index) in repoApi" :key="index" :label="repoInfo.name" :value="repoInfo.name"></el-option>
         </el-select>
       </el-form-item>
     </el-form>
 
-    <el-button class="button" type="primary" plain @click="createJenkinsJob">创建</el-button>
+    <el-button class="button" type="primary" plain @click="createJenkinsJob">Create</el-button>
   </div>
 </template>
 
@@ -69,7 +70,7 @@
           _this.loading = false;
           if (resp && resp.status == 200) {
             this.$router.push({path:'/config/server'});
-            this.$message('提交成功！');
+            this.$message('Submit Successfully!');
           }
         })
 
