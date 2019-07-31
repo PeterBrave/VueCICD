@@ -23,8 +23,8 @@
       </el-header>
 
       <el-container style="margin-top: 0px; margin-bottom: 0px">
-        <el-aside width="180px" class="home-aside">
-          <div style="display: flex;justify-content: flex-start;width: 180px;text-align: left;">
+        <el-aside width="210px" class="home-aside">
+          <div style="display: flex;justify-content: flex-start;width: 210px;text-align: left;">
             <el-menu style="background:#ececec;width: 180px;" unique-opened router>
               <template v-for="(item,index) in this.routes" v-if="!item.hidden">
                 <el-submenu :key="index" :index="index+''">
@@ -32,8 +32,8 @@
                     <i :class="item.iconCls" style="color: #20a0ff;width: 14px;"></i>
                     <span slot="title">{{item.name}}</span>
                   </template>
-                  <el-menu-item width="180px"
-                                style="padding-left: 30px;padding-right:0px;margin-left: 0px;width: 179px;text-align: left"
+                  <el-menu-item width="210px"
+                                style="padding-left: 30px;padding-right:0px;margin-left: 0px;width: 209px;text-align: left"
                                 v-for="child in item.children"
                                 :index="child.path"
                                 :key="child.path">{{child.name}}

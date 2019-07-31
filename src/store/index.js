@@ -22,6 +22,7 @@ export default new Vuex.Store({
     //kavin自定义
     repoName: '',
     projectName: '',
+    language:'',
   },
   mutations: {
     initMenu(state, menus){

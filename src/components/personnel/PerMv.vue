@@ -27,7 +27,7 @@
     data() {
       return {
         textarea: '',
-        projectName:'lmb'
+        projectName:'',
       }
     },
     methods: {
