@@ -1,11 +1,12 @@
 <template>
   <div id="container">
         <el-steps :active="0" align-center>
-          <el-step title="Create Job"></el-step>
-          <el-step title="Configure Server"></el-step>
-          <el-step title="Configure JenkinsFile"></el-step>
-          <el-step title="Build Job"></el-step>
-          <el-step title="Get Building Result"></el-step>
+          <el-step title="Create Job" style="font-family: 'Microsoft YaHei'"></el-step>
+          <el-step title="Configure Server" style="font-family: 'Microsoft YaHei'"></el-step>
+          <el-step title="Configure JenkinsFile" style="font-family: 'Microsoft YaHei'"></el-step>
+          <el-step title="Build Job" style="font-family: 'Microsoft YaHei'"></el-step>
+          <el-step title="Get Building Result" style="font-family: 'Microsoft YaHei'"></el-step>
+<!--          <el-step title="Configure DockerFile" style="font-family: 'Microsoft YaHei'"></el-step>-->
         </el-steps>
     <h1 class="title">Please Create Jenkins Project</h1>
     <br/>
@@ -18,10 +19,21 @@
       </el-form-item>
       <el-form-item label="Repository：">
         <el-select v-model="formLabelAlign.repo" placeholder="Please Select Repo" class="form">
-
-          <el-option v-for="(repoInfo, index) in repoApi" :key="index" :label="repoInfo.name" :value="repoInfo.name"></el-option>
+          <el-option v-for="(repoInfo, index) in repoApi" :key="index" :label="repoInfo.name" :value="repoInfo.name+' '+repoInfo.language"></el-option>
         </el-select>
       </el-form-item>
+
+      <el-form-item label="Language：">
+        <el-select v-model="formLabelAlign.lan" placeholder="Please Select Language">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-form-item>
+
     </el-form>
 
     <el-button class="button" type="primary" plain @click="createJenkinsJob">Create</el-button>
@@ -32,13 +44,32 @@
   export default {
     data() {
       return {
+        setPlaceholder:'',
         labelPosition: 'right',
         formLabelAlign: {
+          lan:'',
           name: '',
           desc: '',
           repo: ''
         },
-        repoApi: []
+        repoApi: [],
+        options: [{
+          value: '选项1',
+          label: 'Java'
+        }, {
+          value: '选项2',
+          label: 'VUE'
+        }, {
+          value: '选项3',
+          label: 'C'
+        }, {
+          value: '选项4',
+          label: 'Phython'
+        }, {
+          value: '选项5',
+          label: 'HTML'
+        }],
+        value: ''
       }
     },
     mounted: function () {
@@ -65,7 +96,8 @@
         this.postRequest('/jenkins/create', {
           projectName: this.formLabelAlign.name,
           description: this.formLabelAlign.desc,
-          repo: this.formLabelAlign.repo
+          repo: this.formLabelAlign.repo,
+          language:this.formLabelAlign.lan,
         }).then(resp=>{
           _this.loading = false;
           if (resp && resp.status == 200) {

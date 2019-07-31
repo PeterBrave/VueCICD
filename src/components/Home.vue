@@ -2,7 +2,7 @@
   <div>
     <el-container class="home-container">
       <el-header class="home-header">
-        <span class="home_title" style="font-family: Monaco">Citrix CI/CD DEMO</span>
+        <span class="home_title" style="font-family: Monaco; color: black">Citrix CI/CD</span>
         <div style="display: flex;align-items: center;margin-right: 7px">
 <!--          <el-badge style="margin-right: 30px" :is-dot="this.$store.state.nfDot">-->
 <!--            <i class="fa fa-bell-o" @click="goChat" style="cursor: pointer"></i>-->
@@ -23,17 +23,17 @@
       </el-header>
 
       <el-container style="margin-top: 0px; margin-bottom: 0px">
-        <el-aside width="180px" class="home-aside">
-          <div style="display: flex;justify-content: flex-start;width: 180px;text-align: left;">
-            <el-menu style="background:#ececec;width: 180px;" unique-opened router>
+        <el-aside width="210px" class="home-aside">
+          <div style="display: flex;justify-content: flex-start;width: 210px;text-align: left; font-family: 'Microsoft YaHei'">
+            <el-menu style="background:#ececec;width: 210px;" unique-opened router>
               <template v-for="(item,index) in this.routes" v-if="!item.hidden">
                 <el-submenu :key="index" :index="index+''">
                   <template slot="title">
                     <i :class="item.iconCls" style="color: #20a0ff;width: 14px;"></i>
                     <span slot="title">{{item.name}}</span>
                   </template>
-                  <el-menu-item width="180px"
-                                style="padding-left: 30px;padding-right:0px;margin-left: 0px;width: 179px;text-align: left"
+                  <el-menu-item width="200px"
+                                style="padding-left: 30px;padding-right:0px;margin-left: 0px;width: 209px;text-align: left"
                                 v-for="child in item.children"
                                 :index="child.path"
                                 :key="child.path">{{child.name}}

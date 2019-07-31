@@ -2,11 +2,12 @@
 <template>
   <div class="container">
     <el-steps :active="1" align-center class="process">
-      <el-step title="Create Job"></el-step>
-      <el-step title="Configure Server"></el-step>
-      <el-step title="Configure JenkinsFile"></el-step>
-      <el-step title="Build Job"></el-step>
-      <el-step title="Get Building Result"></el-step>
+      <el-step title="Create Job" style="font-family: 'Microsoft YaHei'"></el-step>
+      <el-step title="Configure Server" style="font-family: 'Microsoft YaHei'"></el-step>
+      <el-step title="Configure JenkinsFile" style="font-family: 'Microsoft YaHei'"></el-step>
+      <el-step title="Build Job" style="font-family: 'Microsoft YaHei'"></el-step>
+      <el-step title="Get Building Result" style="font-family: 'Microsoft YaHei'"></el-step>
+<!--      <el-step title="Configure DockerFile" style="font-family: 'Microsoft YaHei'"></el-step>-->
     </el-steps>
     <el-form label-width="80px" :model="formLabelAlign">
       <el-form-item label="Server">

@@ -1,11 +1,12 @@
 <template>
   <div class="container">
     <el-steps :active="3" align-center>
-      <el-step title="Create Job"></el-step>
-      <el-step title="Configure Server"></el-step>
-      <el-step title="Configure JenkinsFile"></el-step>
-      <el-step title="Build Job"></el-step>
-      <el-step title="Get Building Result"></el-step>
+      <el-step title="Create Job" style="font-family: 'Microsoft YaHei'"></el-step>
+      <el-step title="Configure Server" style="font-family: 'Microsoft YaHei'"></el-step>
+      <el-step title="Configure JenkinsFile" style="font-family: 'Microsoft YaHei'"></el-step>
+      <el-step title="Build Job" style="font-family: 'Microsoft YaHei'"></el-step>
+      <el-step title="Get Building Result" style="font-family: 'Microsoft YaHei'"></el-step>
+<!--      <el-step title="Configure DockerFile" style="font-family: 'Microsoft YaHei'"></el-step>-->
     </el-steps>
     <h1 class="title">Build Job</h1>
     <el-button class="button" type="primary" plain @click="startBuild">Start Building</el-button>
