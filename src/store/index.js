@@ -57,6 +57,9 @@ export default new Vuex.Store({
     },
     setProjectName(state, msg) {
       state.projectName = msg;
+    },
+    setLanguage(state, msg) {
+      state.language = msg;
     }
   },
   actions: {

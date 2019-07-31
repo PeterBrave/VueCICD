@@ -10,7 +10,7 @@
 <!--      <el-step title="Configure DockerFile" style="font-family: 'Microsoft YaHei'"></el-step>-->
     </el-steps>
     <el-form label-width="80px" :model="formLabelAlign">
-      <el-form-item label="Server">
+      <el-form-item label=" Server:">
         <el-select v-model="formLabelAlign.serverId" placeholder="Please Select Server" class="form">
           <el-option v-for="(serverInfo, index) in serverList" :key="index" :label="serverInfo.serverName" :value="serverInfo.serverId"></el-option>
         </el-select>

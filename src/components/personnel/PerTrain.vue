@@ -43,7 +43,8 @@
     methods: {
       initData() {
         this.postRequest("/github/content", {
-          repo: this.$store.state.repoName
+          repo: this.$store.state.repoName,
+          language: this.$store.state.language,
         }).then(resp => {
           if (resp && resp.status == 200) {
             this.codes = resp.data;

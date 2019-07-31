@@ -10,7 +10,7 @@
     </el-steps>
     <h1 style="font-family: Microsoft YaHei; font-size: 25px">Build Job</h1>
     <el-button class="button" type="primary" plain @click="startBuild">Get Building Result</el-button>
-    <a href="http://3.15.149.72:8080/job/"+{{projectName}}>http://3.15.149.72:8080/job/{{projectName}}/</a>
+    <a :href=" 'http://3.15.149.72:8080/job/' + $store.state.projectName">Link To Jenkins Result</a>
 
     <el-input
       type="textarea"
@@ -27,7 +27,6 @@
     data() {
       return {
         textarea: '',
-        projectName:'',
       }
     },
     methods: {

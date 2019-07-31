@@ -2,7 +2,7 @@
   <div>
     <el-container class="home-container">
       <el-header class="home-header">
-        <span class="home_title" style="font-family: Monaco">Citrix CI/CD DEMO</span>
+        <span class="home_title" style="font-family: Monaco; color: black">Citrix CI/CD</span>
         <div style="display: flex;align-items: center;margin-right: 7px">
 <!--          <el-badge style="margin-right: 30px" :is-dot="this.$store.state.nfDot">-->
 <!--            <i class="fa fa-bell-o" @click="goChat" style="cursor: pointer"></i>-->
@@ -25,7 +25,7 @@
       <el-container style="margin-top: 0px; margin-bottom: 0px">
         <el-aside width="210px" class="home-aside">
           <div style="display: flex;justify-content: flex-start;width: 210px;text-align: left;">
-            <el-menu style="background:#ececec;width: 180px;" unique-opened router>
+            <el-menu style="background:#ececec;width: 210px;" unique-opened router>
               <template v-for="(item,index) in this.routes" v-if="!item.hidden">
                 <el-submenu :key="index" :index="index+''">
                   <template slot="title">
@@ -47,6 +47,7 @@
         <el-main>
           <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/home' }">Home</el-breadcrumb-item>
+<!--            <p style="color: #2c3e50; font-family: 'Microsoft YaHei'; font-size: 50px; margin-top: 200px">Welcome to Citrix CI/CD!</p>-->
             <el-breadcrumb-item v-text="this.$router.currentRoute.name"></el-breadcrumb-item>
           </el-breadcrumb>
 

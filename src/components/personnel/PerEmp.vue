@@ -19,19 +19,14 @@
       </el-form-item>
       <el-form-item label="Repository：">
         <el-select v-model="formLabelAlign.repo" placeholder="Please Select Repo" class="form">
-          <el-option v-for="(repoInfo, index) in repoApi" :key="index" :label="repoInfo.name" :value="repoInfo.name+' '+repoInfo.language"></el-option>
+          <el-option v-for="(repoInfo, index) in repoApi" :key="index" :label="repoInfo.name+ ' '+repoInfo.language" :value="repoInfo.name"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="Language：">
         <el-select v-model="formLabelAlign.lan" placeholder="Please Select Language">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+          <el-option v-for="item in options"  :key="item.value"  :label="item.label"  :value="item.value"></el-option>
+        </el-select>(Choose According to Your Requirements.)
       </el-form-item>
 
     </el-form>
@@ -90,6 +85,7 @@
         // this.global.setRepoName(this.formLabelAlign.repo)
         this.$store.commit('setRepoName', this.formLabelAlign.repo);
         this.$store.commit('setProjectName', this.formLabelAlign.name);
+        this.$store.commit('setLanguage', this.formLabelAlign.lan);
         // alert(global_.projectName + global_.repoName);
         var _this = this;
         this.loading = true;
@@ -97,11 +93,11 @@
           projectName: this.formLabelAlign.name,
           description: this.formLabelAlign.desc,
           repo: this.formLabelAlign.repo,
-          language:this.formLabelAlign.lan,
         }).then(resp=>{
           _this.loading = false;
           if (resp && resp.status == 200) {
-            this.$router.push({path:'/config/server'});
+            // this.$router.push({path:'/config/server'});
+            this.$router.push({path:'/config/jkfile'})
             this.$message('Submit Successfully!');
           }
         })
