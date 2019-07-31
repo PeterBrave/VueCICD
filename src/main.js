@@ -38,13 +38,13 @@ router.beforeEach((to, from, next)=> {
       } else {
         next();
       }
-    } else {
-      initMenu(router, store);
-      if(to.path=='/chat')
-        store.commit("updateMsgList", []);
-      next();
+      } else {
+        initMenu(router, store);
+        if(to.path=='/chat')
+          store.commit("updateMsgList", []);
+        next();
+      }
     }
-  }
 )
 
 new Vue({

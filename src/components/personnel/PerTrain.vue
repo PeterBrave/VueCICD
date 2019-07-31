@@ -100,7 +100,7 @@
     margin: 20px 20px;
   }
   .title {
-    padding: 0 0 20px 30px;
+    padding: 0 0 10px 10px;
     font-family: "Microsoft YaHei";
     font-size: 18px;
   }

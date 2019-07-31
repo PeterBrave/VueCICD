@@ -7,7 +7,7 @@
       <el-step title="Build Job"></el-step>
       <el-step title="Get Building Result"></el-step>
     </el-steps>
-    <h1>Build Job</h1>
+    <h1 class="title">Build Job</h1>
     <el-button class="button" type="primary" plain @click="startBuild">Start Building</el-button>
 
 
@@ -43,6 +43,11 @@
     text-align: left;
     width: 60%;
     margin: 20px 20px;
+  }
+  .title {
+    margin-top: 20px;
+    font-family: "Microsoft YaHei";
+    font-size: 25px;
   }
 
 </style>

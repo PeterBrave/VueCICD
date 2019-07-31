@@ -7,7 +7,7 @@
           <el-step title="Build Job"></el-step>
           <el-step title="Get Building Result"></el-step>
         </el-steps>
-    <div class="title">Please Create Jenkins Project</div>
+    <h1 class="title">Please Create Jenkins Project</h1>
     <br/>
     <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
       <el-form-item label="ProName：">
@@ -90,6 +90,8 @@
   }
   .title {
     margin-top: 20px;
+    font-family: "Microsoft YaHei";
+    font-size: 25px;
   }
 </style>
 

@@ -131,7 +131,6 @@
     border-radius: 30px;
     margin-right: 10px;
   }
-
   .friendListDiv {
     display: flex;
     justify-content: flex-start;
@@ -147,7 +146,6 @@
     border-width: 1px;
     cursor: pointer
   }
-
   .chatDiv {
     border-color: #20a0ff;
     border-style: solid;
@@ -159,12 +157,10 @@
     overflow-y: auto;
     padding-bottom: 50px;
   }
-
   .sendBtn {
     padding-left: 25px;
     padding-right: 25px
   }
-
   .currentChatFriend {
     background-color: #dcdfe6;
   }

@@ -7,7 +7,7 @@
       <el-step title="Build Job"></el-step>
       <el-step title="Get Building Result"></el-step>
     </el-steps>
-    <h1>Build Job</h1>
+    <h1 style="font-family: Microsoft YaHei; font-size: 25px">Build Job</h1>
     <el-button class="button" type="primary" plain @click="startBuild">Get Building Result</el-button>
     <el-input
       type="textarea"
