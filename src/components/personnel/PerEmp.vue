@@ -49,20 +49,17 @@
         },
         repoApi: [],
         options: [{
-          value: '选项1',
+          value: 'java',
           label: 'Java'
         }, {
-          value: '选项2',
+          value: 'vue',
           label: 'VUE'
         }, {
-          value: '选项3',
+          value: 'c',
           label: 'C'
         }, {
-          value: '选项4',
-          label: 'Phython'
-        }, {
-          value: '选项5',
-          label: 'HTML'
+          value: 'python',
+          label: 'Python'
         }],
         value: ''
       }

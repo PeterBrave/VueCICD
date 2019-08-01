@@ -2,7 +2,7 @@
   <div>
     <el-container class="home-container">
       <el-header class="home-header">
-        <span class="home_title" style="font-family: Monaco; color: black">Citrix CI/CD</span>
+        <span class="home_title" style="font-family: Monaco; color: white">Citrix CI/CD</span>
         <div style="display: flex;align-items: center;margin-right: 7px">
 <!--          <el-badge style="margin-right: 30px" :is-dot="this.$store.state.nfDot">-->
 <!--            <i class="fa fa-bell-o" @click="goChat" style="cursor: pointer"></i>-->
@@ -55,9 +55,6 @@
 
           <router-view v-if="!this.$route.meta.keepAlive"></router-view>
         </el-main>
-          <el-footer class="home-footer" >
-            <span class="foot_title" style="font-family: Monaco"> Made by Three Walnuts! @seu.edu.cn</span>
-          </el-footer>
 
       </el-container>
 
@@ -65,6 +62,9 @@
       </el-container>
 
     </el-container>
+    <footer class="home-footer" >
+      <span class="foot_title" style="font-family: Monaco">©2008-2019，Citrix, Inc. 或其附属公司。保留所有权利</span>
+    </footer>
   </div>
 </template>
 <script>
@@ -147,7 +147,8 @@
   }
 
   .home-header {
-    background-color: #B3C0D1;
+    background-color: #20a0ff;
+    /*background-color: #B3C0D1;*/
     color: #333;
     text-align: left;
     display: flex;
@@ -158,24 +159,17 @@
   }
 
   .home-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    display: flex;
-    line-height: 60px;
+    text-align: right;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: white;
+    padding-left: 8px;
   }
 
   .home-aside {
-    background-color: #D3DCE6;
+    background-color: #ececef;
     line-height: unset;
-  }
-
-  .home-main {
-    background-color: #fff;
-    color: #000;
-    text-align: center;
-    margin: 0px;
-    padding: 0px;;
   }
 
   .home_title {
@@ -187,9 +181,9 @@
 
   .foot_title{
     color: black;
-    font-size: 10px;
+    font-size: 16px;
     display: inline;
-    margin-left: 500px;
+    margin-right: 20px;
   }
 
   .home_userinfo {
@@ -206,4 +200,10 @@
     width: 180px;
     min-width: 175px;
   }
+  body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,
+  fieldset,input,textarea,p,blockquote,th,td {
+    margin:0;
+    padding:0;
+  }
+
 </style>

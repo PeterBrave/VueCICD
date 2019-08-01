@@ -11,7 +11,7 @@
     </el-steps>
     <div class="monaco-container" style="text-align: left">
       <div class="title">JenkinsFile</div>
-      <div ref="container" class="monaco-editor" style="height: 250px;"></div>
+      <div ref="container" class="monaco-editor"></div>
     </div>
     <el-button class="button" type="primary" plain @click="submitJenkinsfile">Submit</el-button>
 
@@ -57,6 +57,9 @@
           value: this.codes, // 见props
           language: 'java',
           theme: 'vs', // 编辑器主题：vs, hc-black, or vs-dark，更多选择详见官网
+          fontSize: 16, // 字体大小
+          automaticLayout: true, // 自动布局
+          autoIndent: true, // 自动布局
           editorOptions: this.editorOptions // 同codes
         })
       },
@@ -108,5 +111,15 @@
   }
   .process {
     margin-bottom: 20px;
+  }
+  .monaco-editor {
+    height: 600px;
+
+  }
+  .monaco-container {
+    height: auto;
+    border:  1px #3a8ee6 solid;
+    margin-bottom: 20px;
+    width: 120%;
   }
 </style>
