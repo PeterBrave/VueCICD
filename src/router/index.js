@@ -3,15 +3,14 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Home from '@/components/Home'
-import Chat from '@/components/chat/Chat'
 
 // import EmpAdv from '@/components/emp/EmpAdv'
 // import EmpBasic from '@/components/emp/EmpBasic'
-// import PerEc from '@/components/personnel/PerEc'
-// import PerEmp from '@/components/personnel/PerEmp'
-// import PerMv from '@/components/personnel/PerMv'
-// import PerSalary from '@/components/personnel/PerSalary'
-// import PerTrain from '@/components/personnel/PerTrain'
+// import PerEc from '@/components/jenkins/PerEc'
+// import PerEmp from '@/components/jenkins/PerEmp'
+// import PerMv from '@/components/jenkins/PerMv'
+// import PerSalary from '@/components/jenkins/PerSalary'
+// import PerTrain from '@/components/jenkins/PerTrain'
 // import SalMonth from '@/components/salary/SalMonth'
 // import SalSearch from '@/components/salary/SalSearch'
 // import SalSob from '@/components/salary/SalSob'
@@ -49,19 +48,7 @@ export default new Router({
       hidden: true,
       meta: {
         requireAuth: true
-      },
-      children: [
-        {
-          path: '/chat',
-          name: 'Message',
-          component: Chat,
-          hidden: true,
-          meta: {
-            keepAlive: false,
-            requireAuth: true
-          }
-        }
-      ]
+      }
     }
   ]
 })

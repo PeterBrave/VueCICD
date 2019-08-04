@@ -1,19 +1,23 @@
-
 <template>
   <div class="container">
-    <el-steps :active="2" align-center class="process">
-      <el-step title="Create Job" style="font-family: 'Microsoft YaHei'"></el-step>
-      <el-step title="Configure Server" style="font-family: 'Microsoft YaHei'"></el-step>
-      <el-step title="Configure JenkinsFile" style="font-family: 'Microsoft YaHei'"></el-step>
-      <el-step title="Build Job" style="font-family: 'Microsoft YaHei'"></el-step>
-      <el-step title="Get Building Result" style="font-family: 'Microsoft YaHei'"></el-step>
-<!--      <el-step title="Configure DockerFile" style="font-family: 'Microsoft YaHei'"></el-step>-->
+    <el-steps :active="2" simple class="process">
+      <el-step title="Create" icon="el-icon-circle-plus-outline"></el-step>
+      <el-step title="Server" icon="el-icon-upload"></el-step>
+      <el-step title="Jenkinsfile" icon="el-icon-edit"></el-step>
+      <el-step title="Build" icon="el-icon-lightning"></el-step>
+      <el-step title="Result" icon="el-icon-s-promotion"></el-step>
     </el-steps>
+    <div style="display: inline-block; width: 98%">
+      <div class="fl-left">
+        <div class="new-pipeline">New Pipeline</div>
+        <div class="title">Review your jenkins file</div>
+      </div>
+      <button class="fl-right run-button" @click="submitJenkinsfile">Save and run</button>
+    </div>
     <div class="monaco-container" style="text-align: left">
-      <div class="title">JenkinsFile</div>
+      <div class="file-name">JenkinsFile</div>
       <div ref="container" class="monaco-editor"></div>
     </div>
-    <el-button class="button" type="primary" plain @click="submitJenkinsfile">Submit</el-button>
 
   </div>
 
@@ -25,19 +29,6 @@
     data() {
       return {
         codes: '',
-        readOnly: false,
-        // 主要配置
-        editorOptions: {
-          selectOnLineNumbers: true,
-          roundedSelection: false,
-          readOnly: this.readOnly, // 只读
-          cursorStyle: 'line', // 光标样式
-          automaticLayout: false, // 自动布局
-          glyphMargin: true, // 字形边缘
-          useTabStops: false,
-          fontSize: 28, // 字体大小
-          autoIndent: false // 自动布局
-        }
       }
     },
     methods: {
@@ -55,9 +46,9 @@
       initEditor() {
         this.monacoEditor = monaco.editor.create(this.$refs.container, {
           value: this.codes, // 见props
-          language: 'java',
+          language: 'javascript',
           theme: 'vs', // 编辑器主题：vs, hc-black, or vs-dark，更多选择详见官网
-          fontSize: 16, // 字体大小
+          fontSize: 14, // 字体大小
           automaticLayout: true, // 自动布局
           autoIndent: true, // 自动布局
           editorOptions: this.editorOptions // 同codes
@@ -99,27 +90,41 @@
   }
 </script>
 <style>
-  .container {
-    text-align: left;
-    width: 60%;
-    margin: 20px 20px;
-  }
-  .title {
-    padding: 0 0 10px 10px;
-    font-family: "Microsoft YaHei";
-    font-size: 18px;
-  }
-  .process {
-    margin-bottom: 20px;
-  }
   .monaco-editor {
-    height: 600px;
-
+    height: 478px;
   }
   .monaco-container {
     height: auto;
-    border:  1px #3a8ee6 solid;
     margin-bottom: 20px;
-    width: 120%;
+    width: 98%;
+    background-color: white;
+    box-shadow: 0 0 2px gray;
+    border-radius: 2px;
+  }
+  .fl-right {
+    float: right;
+  }
+  .fl-left {
+    float: left;
+  }
+  .run-button {
+    border: none;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    margin-top: 40px;
+    padding: 6px 12px;
+    background-color: rgba(0,120,212,1);
+    color: white;
+    border-radius: 2px;
+    position: relative;
+    bottom: 0px;
+  }
+  .file-name {
+    line-height: 32px;
+    font-size: 21px;
+    letter-spacing: -.02em;
+    font-weight: 600;
+    padding: 18px 36px;
   }
 </style>

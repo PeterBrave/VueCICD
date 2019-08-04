@@ -38,19 +38,14 @@ export const formatRoutes = (routes)=> {
     if (children && children instanceof Array) {
       children = formatRoutes(children);
     }
+    //将组件注册到Home这个页面中，因此menu的那个表的设计就是为了做这个的。因此这个后期需要修改。
     let fmRouter = {
       path: path,
       component(resolve){
         if (component.startsWith("Home")) {
           require(['../components/' + component + '.vue'], resolve)
-        } else if (component.startsWith("Emp")) {
-          require(['../components/emp/' + component + '.vue'], resolve)
         } else if (component.startsWith("Per")) {
-          require(['../components/personnel/' + component + '.vue'], resolve)
-        } else if (component.startsWith("Sal")) {
-          require(['../components/salary/' + component + '.vue'], resolve)
-        } else if (component.startsWith("Sta")) {
-          require(['../components/statistics/' + component + '.vue'], resolve)
+          require(['../components/jenkins/' + component + '.vue'], resolve)
         } else if (component.startsWith("Sys")) {
           require(['../components/system/' + component + '.vue'], resolve)
         }

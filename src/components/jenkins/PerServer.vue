@@ -1,13 +1,11 @@
-
 <template>
   <div class="container">
-    <el-steps :active="1" align-center class="process">
-      <el-step title="Create Job" style="font-family: 'Microsoft YaHei'"></el-step>
-      <el-step title="Configure Server" style="font-family: 'Microsoft YaHei'"></el-step>
-      <el-step title="Configure JenkinsFile" style="font-family: 'Microsoft YaHei'"></el-step>
-      <el-step title="Build Job" style="font-family: 'Microsoft YaHei'"></el-step>
-      <el-step title="Get Building Result" style="font-family: 'Microsoft YaHei'"></el-step>
-<!--      <el-step title="Configure DockerFile" style="font-family: 'Microsoft YaHei'"></el-step>-->
+    <el-steps :active="1" simple>
+      <el-step title="Create" icon="el-icon-circle-plus-outline"></el-step>
+      <el-step title="Server" icon="el-icon-upload"></el-step>
+      <el-step title="Jenkinsfile" icon="el-icon-edit"></el-step>
+      <el-step title="Build" icon="el-icon-lightning"></el-step>
+      <el-step title="Result" icon="el-icon-s-promotion"></el-step>
     </el-steps>
     <el-form label-width="80px" :model="formLabelAlign">
       <el-form-item label=" Server:">
@@ -93,23 +91,5 @@
   }
 </script>
 <style>
-  .container {
-    text-align: left;
-    width: 60%;
-    margin: 20px 20px;
-  }
-  .monaco-container {
-    border: 1px #3a8ee6 solid;
-    padding-left: 20px;
-    margin-bottom: 20px;
-    padding-top: 20px;
-  }
-  .title {
-    padding: 0 0 10px 10px;
-    font-family: "Microsoft YaHei";
-    font-size: 18px;
-  }
-  .process {
-    margin-bottom: 20px;
-  }
+
 </style>
