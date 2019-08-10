@@ -4,8 +4,6 @@
       <el-step title="Create" icon="el-icon-circle-plus-outline"></el-step>
       <el-step title="Server" icon="el-icon-upload"></el-step>
       <el-step title="Jenkinsfile" icon="el-icon-edit"></el-step>
-      <el-step title="Build" icon="el-icon-lightning"></el-step>
-      <el-step title="Result" icon="el-icon-s-promotion"></el-step>
     </el-steps>
     <div class="new-pipeline">New Pipeline</div>
     <div class="title">Select a repository</div>
@@ -67,6 +65,9 @@
           })
         }
         return this.repoApi;
+      },
+      user() {
+        return this.$store.state.user;
       }
     },
     mounted: function () {
@@ -92,7 +93,7 @@
     methods: {
       initData() {
         var _this = this;
-        this.getRequest("https://api.github.com/users/PeterBrave/repos").then(resp => {
+        this.getRequest("https://api.github.com/users/" + this.user.githubName+ "/repos").then(resp => {
           if (resp && resp.status == 200) {
             var data = resp.data;
             var map = {Java: "#b07219", JavaScript: "#f1e05a", HTML: "#e34c26", Swift: "#ffac45", Python: "#3572A5"};
@@ -118,6 +119,10 @@
         this.$store.commit('setRepoName', name);
         this.$store.commit('setProjectName', name + time);
         this.$store.commit('setLanguage', language);
+        window.localStorage.setItem('repoName', JSON.stringify(name));
+        window.localStorage.setItem('projectName', JSON.stringify(name + time));
+        window.localStorage.setItem('language', JSON.stringify(language));
+
         var _this = this;
         this.loading = true;
         this.postRequest('/jenkins/create', {
@@ -139,28 +144,6 @@
   }
 </script>
 <style>
-
-  .container {
-    text-align: left;
-    width: 100%;
-    margin: 20px 20px;
-  }
-
-  .process {
-    width: 80%;
-    background-color: white;
-  }
-  .new-pipeline {
-    margin: 10px 0 10px 0;
-  }
-
-  .title {
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 40px;
-    letter-spacing: -.04em;
-  }
-
   .repo-list {
     width: 70%;
     height: 58px;

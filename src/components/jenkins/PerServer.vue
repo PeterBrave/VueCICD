@@ -1,11 +1,9 @@
 <template>
   <div class="container">
-    <el-steps :active="1" simple>
+    <el-steps :active="1" simple class="process">
       <el-step title="Create" icon="el-icon-circle-plus-outline"></el-step>
       <el-step title="Server" icon="el-icon-upload"></el-step>
       <el-step title="Jenkinsfile" icon="el-icon-edit"></el-step>
-      <el-step title="Build" icon="el-icon-lightning"></el-step>
-      <el-step title="Result" icon="el-icon-s-promotion"></el-step>
     </el-steps>
     <el-form label-width="80px" :model="formLabelAlign">
       <el-form-item label=" Server:">
@@ -15,7 +13,7 @@
       </el-form-item>
     </el-form>
     <div class="monaco-container" style="text-align: left">
-      <div class="title">Please Input Bash Script</div>
+      <div class="file-name">Please Input Bash Script</div>
       <div ref="container" class="monaco-editor" style="height: 250px;"></div>
     </div>
     <el-button class="button" type="primary" plain @click="submitBashToServer">Submit</el-button>
@@ -61,8 +59,11 @@
       initEditor() {
         this.monacoEditor = monaco.editor.create(this.$refs.container, {
           value: this.codes, // 见props
-          language: 'java',
+          language: 'javascript',
           theme: 'vs', // 编辑器主题：vs, hc-black, or vs-dark，更多选择详见官网
+          fontSize: 14, // 字体大小
+          automaticLayout: true, // 自动布局
+          autoIndent: true, // 自动布局
           editorOptions: this.editorOptions // 同codes
         })
       },

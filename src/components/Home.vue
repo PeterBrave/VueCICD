@@ -11,14 +11,14 @@
         </div>
         <div>
           <el-dropdown style="color: black" @command="handleCommand">
-            <span class="el-dropdown-link home_userinfo" style="display: flex;align-items: center; vertical-align: middle;">
+            <span class="el-dropdown-link home_userinfo"
+                  style="display: flex;align-items: center; vertical-align: middle;">
               {{user.name}}
               <i><img v-if="user.userface!=''" :src="user.userface"
                       style="width: 20px;height: 20px;margin-right: 5px;margin-left: 5px;border-radius: 40px; background-color:#D3DCE6 "/></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>Account Center</el-dropdown-item>
-              <el-dropdown-item>Setting</el-dropdown-item>
+              <el-dropdown-item><a href="/#/profile">Account Center</a></el-dropdown-item>
               <el-dropdown-item command="logout" divided>Log Out</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -26,33 +26,45 @@
       </el-header>
 
       <el-container style="margin-top: 0px; margin-bottom: 0px">
-        <el-aside width="250px" class="home-aside">
-          <div style="display: flex;justify-content: flex-start;width: 250px;text-align: left;">
-            <el-menu style="background:#ececec;width: 250px;" router default-active>
-              <template v-for="(item,index) in this.routes" v-if="!item.hidden">
-                <el-submenu :key="index" :index="index+''">
-                  <template slot="title">
-                    <i :class="item.iconCls" style="color: #20a0ff;width: 14px; vertical-align: middle; margin-right: 12px;"></i>
-                    <span slot="title">{{item.name}}</span>
-                  </template>
-                  <el-menu-item width="210px"
-                                style="padding-left: 30px;padding-right:0px;margin-left: 0px;width: 250px;text-align: left"
-                                v-for="child in item.children"
-                                :index="child.path"
-                                :key="child.path">{{child.name}}
-                  </el-menu-item>
-                </el-submenu>
-              </template>
+        <el-aside width="20%" class="home-aside">
+          <div style="display: flex;justify-content: flex-start;width: 100%;text-align: left;">
+            <el-menu
+              class="el-menu-vertical-demo"
+              @open="handleOpen"
+              @close="handleClose"
+              router="true"
+              style="width: 100%">
+              <el-menu-item>
+                <i class="el-icon-menu"></i>
+                <span slot="title">Overview</span>
+              </el-menu-item>
+              <el-menu-item
+                index="/create/job"
+                class="bg-gray">
+                <i class="el-icon-circle-plus-outline"></i>
+                <span slot="title">Create</span>
+              </el-menu-item>
+              <el-menu-item
+                index="/config/server"
+                class="bg-gray">
+                <i class="el-icon-upload"></i>
+                <span slot="title">Server</span>
+              </el-menu-item>
+              <el-menu-item
+                index="/config/jkfile"
+                class="bg-gray">
+                <i class="el-icon-edit"></i>
+                <span slot="title">Jenkinsfile</span>
+              </el-menu-item>
+              <el-menu-item index="/setting" class="menu-setting">
+                <i class="el-icon-setting"></i>
+                <span slot="title">Setting</span>
+              </el-menu-item>
             </el-menu>
           </div>
         </el-aside>
         <el-container>
-          <el-main style="background-color: #f6f6f6">
-            <el-breadcrumb separator-class="el-icon-arrow-right">
-              <el-breadcrumb-item :to="{ path: '/home' }">Home</el-breadcrumb-item>
-              <!--            <p style="color: #2c3e50; font-family: 'Microsoft YaHei'; font-size: 50px; margin-top: 200px">Welcome to Citrix CI/CD!</p>-->
-              <el-breadcrumb-item v-text="this.$router.currentRoute.name"></el-breadcrumb-item>
-            </el-breadcrumb>
+          <el-main style="background-color: #f6f6f6; position: fixed; top:48px; left: 20%; bottom: 0px; width: 80%">
 
             <router-view v-if="this.$route.meta.keepAlive"></router-view>
 
@@ -91,7 +103,8 @@
             });
           });
         }
-      }
+      },
+
     },
     data() {
       return {
@@ -131,47 +144,15 @@
     padding-left: 12px;
   }
 
-  .home-header {
-    height: 48px;
-    line-height: 48px;
-    color: #333;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: content-box;
-    border-bottom: 1px #c8c9cc solid;
-  }
-
-  .home_title {
-    font-size: 16px;
-    /*display: inline;*/
-    margin-left: 18px;
-    vertical-align: middle;
-    font-weight: bolder;
-    color: rgba(0,120,212,1);
-  }
-
-  .home-footer {
-    text-align: right;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    background-color: white;
-    padding-left: 8px;
-  }
-
   .home-aside {
     background-color: #ececef;
     line-height: unset;
+    position: fixed;
+    left: 0;
+    top: 48px;
+    bottom: 0;
   }
 
-  .foot_title {
-    color: black;
-    font-size: 16px;
-    display: inline;
-    margin-right: 20px;
-  }
 
   .home_userinfo {
     cursor: pointer;
@@ -180,6 +161,17 @@
   .el-submenu .el-menu-item {
     width: 180px;
     min-width: 175px;
+  }
+  .menu-setting {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 20%;
+    height: 56px;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+  }
+  .bg-gray {
+    background-color: rgba(0, 0, 0, .07);
   }
 
 </style>

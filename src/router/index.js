@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import Profile from '@/components/Profile'
+import Setting from '@/components/Setting'
 import Home from '@/components/Home'
 
 // import EmpAdv from '@/components/emp/EmpAdv'
@@ -40,6 +42,16 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register,
+      hidden: true
+    },{
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
+      hidden: true
+    },{
+      path: '/setting',
+      name: 'Setting',
+      component: Setting,
       hidden: true
     },{
       path: '/home',

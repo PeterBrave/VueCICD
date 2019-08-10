@@ -4,17 +4,15 @@
       <el-step title="Create" icon="el-icon-circle-plus-outline"></el-step>
       <el-step title="Server" icon="el-icon-upload"></el-step>
       <el-step title="Jenkinsfile" icon="el-icon-edit"></el-step>
-      <el-step title="Build" icon="el-icon-lightning"></el-step>
-      <el-step title="Result" icon="el-icon-s-promotion"></el-step>
     </el-steps>
-    <div style="display: inline-block; width: 98%">
+    <div style="display: inline-block; width: 98%; text-align: left">
       <div class="fl-left">
         <div class="new-pipeline">New Pipeline</div>
         <div class="title">Review your jenkins file</div>
       </div>
       <button class="fl-right run-button" @click="submitJenkinsfile">Save and run</button>
     </div>
-    <div class="monaco-container" style="text-align: left">
+    <div class="monaco-container">
       <div class="file-name">JenkinsFile</div>
       <div ref="container" class="monaco-editor"></div>
     </div>
@@ -34,8 +32,10 @@
     methods: {
       initData() {
         this.postRequest("/github/content", {
-          repo: this.$store.state.repoName,
-          language: this.$store.state.language,
+          repo: JSON.parse(window.localStorage.getItem('repoName')),
+          language: JSON.parse(window.localStorage.getItem('language')),
+          githubName: this.user.githubName,
+          githubToken: this.user.githubToken,
         }).then(resp => {
           if (resp && resp.status == 200) {
             this.codes = resp.data;
@@ -54,31 +54,26 @@
           editorOptions: this.editorOptions // 同codes
         })
       },
-      submitBashToServer() {
-        var _this = this;
-        this.loading = true;
-        this.postRequest('/server/run', {
-          serverId: this.formLabelAlign.serverId,
-          bashContent: this.monacoEditor.getValue()
-        }).then(resp=> {
-          _this.loading = false;
-          if (resp && resp.status == 200) {
-            var data = resp.data;
-            alert(data);
-
-          }
-        })
-      },
       submitJenkinsfile() {
         var _this = this;
         this.loading = true;
         this.postRequest('/github/commit', {
           codeContent: this.monacoEditor.getValue(),
-          repo: this.$store.state.repoName
+          repo: JSON.parse(window.localStorage.getItem('repoName')),
+          githubName: this.user.githubName,
+          githubToken: this.user.githubToken,
         }).then(resp=> {
           _this.loading = false;
           if (resp && resp.status == 200) {
-            this.$router.push({path:'/build/job'});
+            this.loading = true;
+            this.postRequest('/jenkins/build', {
+              jobName: JSON.parse(window.localStorage.getItem('projectName')),
+            }).then(resp=>{
+              _this.loading = false;
+              if (resp && resp.status == 200) {
+                window.open('http://3.15.149.72:8080/job/' + JSON.parse(window.localStorage.getItem('projectName')));
+              }
+            })
           }
         })
       },
@@ -86,12 +81,17 @@
     mounted () {
       this.initData();
     },
+    computed: {
+        user() {
+          return this.$store.state.user;
+      }
+    }
 
   }
 </script>
 <style>
   .monaco-editor {
-    height: 478px;
+    height: 512px;
   }
   .monaco-container {
     height: auto;
@@ -103,9 +103,6 @@
   }
   .fl-right {
     float: right;
-  }
-  .fl-left {
-    float: left;
   }
   .run-button {
     border: none;

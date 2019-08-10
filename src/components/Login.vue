@@ -16,6 +16,7 @@
       <el-button type="primary" style="width: 35%" @click="submitClick">Sign in</el-button>
       <el-button type="primary" style="width: 35%" @click="submitRegister">Sign up</el-button>
     </el-form-item>
+
   </el-form>
 </template>
 <script>
@@ -28,7 +29,7 @@
         },
         checked: true,
         loginForm: {
-          username: 'Una',
+          username: 'Kavin',
           password: '123'
         },
         loading: false
@@ -46,6 +47,7 @@
           if (resp && resp.status == 200) {
             var data = resp.data;
             _this.$store.commit('login', data.obj);
+            console.log(data.obj);
             var path = _this.$route.query.redirect;
             _this.$router
               .replace({path: path == '/' || path == undefined ? '/create/job' : path});
