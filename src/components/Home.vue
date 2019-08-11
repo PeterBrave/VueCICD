@@ -56,11 +56,20 @@
                 <i class="el-icon-edit"></i>
                 <span slot="title">Jenkinsfile</span>
               </el-menu-item>
-              <el-menu-item index="/setting" class="menu-setting">
-                <i class="el-icon-setting"></i>
-                <span slot="title">Setting</span>
-              </el-menu-item>
             </el-menu>
+            <div class="menu-bottom">
+              <el-menu
+                class="el-menu-vertical-demo"
+                @open="handleOpen"
+                @close="handleClose"
+                router="true"
+                style="width: 100%">
+                <el-menu-item index="/setting">
+                  <i class="el-icon-setting"></i>
+                  <span slot="title">Setting</span>
+                </el-menu-item>
+              </el-menu>
+            </div>
           </div>
         </el-aside>
         <el-container>
@@ -162,13 +171,12 @@
     width: 180px;
     min-width: 175px;
   }
-  .menu-setting {
+  .menu-bottom {
     position: fixed;
     bottom: 0px;
     left: 0;
-    width: 20%;
-    height: 56px;
     border-top: 1px solid rgba(0, 0, 0, .1);
+    width: 20%;
   }
   .bg-gray {
     background-color: rgba(0, 0, 0, .07);
