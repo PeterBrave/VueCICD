@@ -3,7 +3,13 @@
       <el-container>
         <el-header class="home-header" height="48px">
           <div>
-            <span class="home_title">DevOps Platform</span>
+            <a href="/#/create/job">
+              <img
+                class="citrix-logo"
+                :src="url"
+                :fit="fit"/>
+            </a>
+            <a href="/#/create/job"><span class="home_title">DevOps Platform</span></a>
           </div>
           <div>
             <el-dropdown style="color: black" @command="handleCommand">
@@ -26,7 +32,7 @@
                 <img :src="user.userface" class="profile-avatar">
                 <div class="profile-name">
                   <div class="profile-username">{{user.name}}</div>
-                  <button class="profile-button" @click="editClick">编辑信息</button>
+                  <button class="profile-button" @click="editClick">Edit</button>
                 </div>
                 <div class="profile-notice">
                   <i class="el-icon-warning"></i>
@@ -65,13 +71,31 @@
             </el-col>
             <el-col :span="14">
               <div class="profile-right">
-
+                <div style="display: inline-block; width: 100%;border-bottom: 1px solid gray;">
+                  <div class="project-title">Citrix DevOps CI/CD Project</div>
+                  <button class="create-button" style="float: right" v-on:click="createNewJenkinsJob">Create New</button>
+                </div>
+                <div class="repo-list" v-for="project in projectList">
+                  <img class="repo-img" :src="user.userface">
+                  <div style="float: left; margin: 8px 0 8px 0;">
+                    <div>
+                      <span class="repo-name" v-on:click="projectDetailOnJenkins(project.name)">{{project.name}}</span>
+                      <span class="repo-fork" >{{project.typeName}}</span>
+                    </div>
+                    <span height="auto" class="repo-time">{{project.create_time | formatDate}}</span>
+                  </div>
+                  <div class="repo-language">
+                    <span class="repo-language-color" :style="{background: project.color}"></span>
+                    <span>{{project.language}}</span>
+                    <button class="delete-button" v-on:click="deleteProject(project.name)">delete</button>
+                  </div>
+                </div>
               </div>
             </el-col>
           </el-row>
         </el-main>
         <footer class="home-footer">
-          <span class="foot_title">© 1999-2019 Citrix Systems, Inc. 保留所有权利。</span>
+          <span class="foot_title">© 1999-2019 Citrix Systems, Inc. All rights reserved.</span>
         </footer>
       </el-container>
     </div>
@@ -79,6 +103,9 @@
 
 <script>
     export default {
+      mounted: function () {
+        this.initData();
+      },
       methods: {
         handleCommand(cmd) {
           var _this = this;
@@ -101,6 +128,55 @@
         },
         editClick: function () {
           this.$router.push("/setting");
+        },
+        initData() {
+          var _this = this;
+          this.postRequest("/project/all", {
+            author: this.user.name
+          }).then(resp => {
+            if (resp && resp.status == 200) {
+              var data = resp.data.obj;
+              console.log(data.obj);
+              var map = {Java: "#b07219", JavaScript: "#f1e05a", HTML: "#e34c26", Swift: "#ffac45", Python: "#3572A5"};
+              var type_map = {0: "unknown", 1: "windows server",2: "linux server", 3: "Docker"}
+              for (var project in data) {
+                data[project].color = map[data[project].language];
+                data[project].typeName = type_map[data[project].type];
+              }
+              _this.projectList = data;
+              console.log(data);
+            }
+          })
+        },
+        projectDetailOnJenkins(name) {
+          window.open('http://3.15.149.72:8080/job/' + name);
+        },
+        deleteProject(name) {
+          this.postRequest("/project/delete", {
+            name: name,
+          }).then(resp => {
+            if (resp && resp.status == 200) {
+              location.reload();
+            }
+          })
+        },
+        createNewJenkinsJob() {
+          var currentGithubName = this.user.githubName;
+          var currentGithubToken = this.user.githubToken;
+          console.log(currentGithubName + currentGithubToken);
+          if (currentGithubName!=null && currentGithubToken !=null) {
+            this.$router.push("/create/job");
+          } else {
+            alert("Please go to the settings page to improve the information！");
+            this.$router.push("/setting");
+          }
+        }
+      },
+      data() {
+        return {
+          url: 'https://raw.githubusercontent.com/PeterBrave/MardownPic/master/citrix-logo.jpg',
+          fit: 'contain',
+          projectList: [],
         }
       },
         name: "GithubRegister",
@@ -121,8 +197,8 @@
     padding-right: 50px;
   }
   .profile-right {
-    border: 1px solid blue;
-    height: 100px;
+    height: auto;
+    margin: 4px 12px;
   }
   .profile-avatar {
     width: 160px;
@@ -189,5 +265,36 @@
   }
   .el-icon-ice-drink {
     font-size: 22px;
+  }
+  .project-title {
+    text-align: left;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 400;
+    padding: 12px 0;
+    float: left;
+  }
+  .delete-button {
+    border: none;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: bold;
+    padding: 2px 6px;
+    background-color: rgba(0,120,212,1);
+    color: white;
+    border-radius: 2px;
+    float: right;
+  }
+  .create-button {
+    border: none;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 6px 12px;
+    background-color: rgba(0,120,212,1);
+    color: white;
+    border-radius: 2px;
+    position: relative;
+    bottom: 0px;
   }
 </style>

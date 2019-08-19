@@ -42,9 +42,7 @@
         }).then(resp=> {
           _this.loading = false;
           if (resp && resp.status == 200) {
-            var path = _this.$route.query.redirect;
-            _this.$router
-              .replace({path: path == '/' || path == undefined ? '/login' : path});
+            this.$router.push({path: '/'})
           } else {
             alert("error!");
           }

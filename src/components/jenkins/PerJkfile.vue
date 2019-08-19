@@ -57,6 +57,14 @@
       submitJenkinsfile() {
         var _this = this;
         this.loading = true;
+        var typeId = JSON.parse(window.localStorage.getItem('jenkinsId'));
+        this.postRequest("/project/update", {
+          name: JSON.parse(window.localStorage.getItem('projectName')),
+          type: 0,
+          enable: true,
+        }).then(resp=>{
+
+        });
         this.postRequest('/github/commit', {
           codeContent: this.monacoEditor.getValue(),
           repo: JSON.parse(window.localStorage.getItem('repoName')),
@@ -68,10 +76,15 @@
             this.loading = true;
             this.postRequest('/jenkins/build', {
               jobName: JSON.parse(window.localStorage.getItem('projectName')),
+              type: typeId,
             }).then(resp=>{
               _this.loading = false;
               if (resp && resp.status == 200) {
-                window.open('http://3.15.149.72:8080/job/' + JSON.parse(window.localStorage.getItem('projectName')));
+                if (typeId == 1 || typeId == 2) {
+                  window.open('http://3.15.149.72:8080/job/' + JSON.parse(window.localStorage.getItem('projectName')));
+                } else if (typeId == 3) {
+                  window.open('http://13.125.214.112:30002/job/' + JSON.parse(window.localStorage.getItem('projectName')));
+                }
               }
             })
           }
@@ -90,38 +103,4 @@
   }
 </script>
 <style>
-  .monaco-editor {
-    height: 512px;
-  }
-  .monaco-container {
-    height: auto;
-    margin-bottom: 20px;
-    width: 98%;
-    background-color: white;
-    box-shadow: 0 0 2px gray;
-    border-radius: 2px;
-  }
-  .fl-right {
-    float: right;
-  }
-  .run-button {
-    border: none;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: bold;
-    margin-top: 40px;
-    padding: 6px 12px;
-    background-color: rgba(0,120,212,1);
-    color: white;
-    border-radius: 2px;
-    position: relative;
-    bottom: 0px;
-  }
-  .file-name {
-    line-height: 32px;
-    font-size: 21px;
-    letter-spacing: -.02em;
-    font-weight: 600;
-    padding: 18px 36px;
-  }
 </style>

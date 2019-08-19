@@ -3,11 +3,18 @@
     <el-container>
       <el-header class="home-header" height="48px">
         <div>
-          <span class="home_title">DevOps Platform</span>
+          <a href="/#/create/job">
+            <img
+              class="citrix-logo"
+              :src="url"
+              :fit="fit"/>
+          </a>
+          <a href="/#/create/job"><span class="home_title">DevOps Platform</span></a>
         </div>
         <div>
           <el-dropdown style="color: black" @command="handleCommand">
-            <span class="el-dropdown-link home_userinfo" style="display: flex;align-items: center; vertical-align: middle;">
+            <span class="el-dropdown-link home_userinfo"
+                  style="display: flex;align-items: center; vertical-align: middle;">
               {{user.name}}
               <i><img v-if="user.userface!=''" :src="user.userface"
                       style="width: 20px;height: 20px;margin-right: 5px;margin-left: 5px;border-radius: 40px; background-color:#D3DCE6 "/></i>
@@ -25,7 +32,9 @@
             <div class="profile-left">
               <img :src="user.userface" class="profile-avatar">
               <el-row :gutter="20" class="input-model">
-                <el-col :span="8"><div class="setting-name">全名</div></el-col>
+                <el-col :span="8">
+                  <div class="setting-name">Name</div>
+                </el-col>
                 <el-col :span="16"><input class="setting-content" v-model="user.name"></input></el-col>
               </el-row>
               <div class="profile-notice">
@@ -33,16 +42,18 @@
                 <span class="profile-notice-text">The following need to set up carefully!</span>
               </div>
               <el-row :gutter="20" class="input-model">
-                <el-tooltip class="item" effect="light" content="Your RepoName" placement="left">
-                  <el-col :span="8"><div class="setting-name">仓库名</div></el-col>
-                </el-tooltip>
+                <el-col :span="8">
+                  <div class="setting-name">Github Name</div>
+                </el-col>
                 <el-col :span="16"><input class="setting-content" v-model="user.githubName"></input></el-col>
               </el-row>
               <el-row :gutter="20" class="input-model">
-                <el-tooltip class="item" effect="light" content="Your RepoName" placement="left">
-                  <el-col :span="8"><div class="setting-name">Github Token</div></el-col>
-                </el-tooltip>
-                <el-col :span="16"><input class="setting-content" v-model="user.githubToken"></input></el-col>
+                <div>
+                  <el-col :span="8">
+                    <div class="setting-name">Github Token</div>
+                  </el-col>
+                  <el-col :span="16"><input class="setting-content" v-model="user.githubToken" :type="showToken?'password':'text'"></input></el-col>
+                </div>
               </el-row>
               <br>
               <div class="profile-notice">
@@ -50,18 +61,24 @@
                 <span class="profile-notice-text">Basic Information</span>
               </div>
               <el-row :gutter="20" class="input-model">
-                <el-col :span="8"><div class="setting-name">邮箱</div></el-col>
+                <el-col :span="8">
+                  <div class="setting-name">E-mail</div>
+                </el-col>
                 <el-col :span="16"><input class="setting-content" v-model="user.email"></input></el-col>
               </el-row>
               <el-row :gutter="20" class="input-model">
-                <el-col :span="8"><div class="setting-name">地址</div></el-col>
+                <el-col :span="8">
+                  <div class="setting-name">Address</div>
+                </el-col>
                 <el-col :span="16"><input class="setting-content" v-model="user.address"></input></el-col>
               </el-row>
               <el-row :gutter="20" class="input-model">
-                <el-col :span="8"><div class="setting-name">电话</div></el-col>
+                <el-col :span="8">
+                  <div class="setting-name">Phone</div>
+                </el-col>
                 <el-col :span="16"><input class="setting-content" v-model="user.phone"></input></el-col>
               </el-row>
-              <button class="setting-button" @click="submitModify">保存更改</button>
+              <button class="setting-button" @click="submitModify">Save change</button>
             </div>
 
           </el-col>
@@ -69,7 +86,7 @@
         </el-row>
       </el-main>
       <footer class="home-footer">
-        <span class="foot_title">© 1999-2019 Citrix Systems, Inc. 保留所有权利。</span>
+        <span class="foot_title">© 1999-2019 Citrix Systems, Inc. All rights reserved.</span>
       </footer>
     </el-container>
   </div>
@@ -79,7 +96,9 @@
   export default {
     data() {
       return {
-
+        url: 'https://raw.githubusercontent.com/PeterBrave/MardownPic/master/citrix-logo.jpg',
+        fit: 'contain',
+        showToken: true,
       }
     },
     methods: {
@@ -102,7 +121,7 @@
           });
         }
       },
-      submitModify: function() {
+      submitModify: function () {
         console.log("here");
         var _this = this;
         this.loading = true;
@@ -141,6 +160,7 @@
     padding-right: 50px;
     width: 64%;
   }
+
   .profile-avatar {
     width: 160px;
     height: 160px;
@@ -148,13 +168,16 @@
     margin-top: 40px;
     box-shadow: 0 0 2px gray;
   }
+
   .input-model {
     margin: 20px 0;
     height: 32px;
   }
+
   .setting-name {
     text-align: left;
   }
+
   .setting-content {
     float: left;
     width: 100%;
@@ -162,25 +185,31 @@
     font-size: 14px;
     padding-left: 8px;
   }
+
   .profile-notice {
     text-align: left;
     margin: 10px 0;
     padding: 6px 4px;
-    border-bottom: 1px solid rgba(0,120,212,1);
+    border-bottom: 1px solid rgba(0, 120, 212, 1);
   }
+
   .el-icon-warning {
-    color: rgba(0,120,212,1);
+    color: rgba(0, 120, 212, 1);
     font-size: 22px;
   }
+
   .profile-notice-text {
     font-size: 18px;
   }
+
   .light-color {
-    color: rgba(0,120,212,1);
+    color: rgba(0, 120, 212, 1);
   }
+
   .el-icon-ice-drink {
     font-size: 22px;
   }
+
   .setting-button {
     float: left;
     border: none;
@@ -188,7 +217,7 @@
     line-height: 18px;
     font-weight: bold;
     padding: 6px 12px;
-    background-color: rgba(0,120,212,1);
+    background-color: rgba(0, 120, 212, 1);
     color: white;
     border-radius: 2px;
     bottom: 0px;

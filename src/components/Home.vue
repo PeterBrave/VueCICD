@@ -3,11 +3,13 @@
     <el-container class="home-container">
       <el-header class="home-header" height="48px">
         <div>
-          <img
-            class="citrix-logo"
-            :src="url"
-            :fit="fit"/>
-          <span class="home_title">DevOps Platform</span>
+          <a href="/#/create/job">
+            <img
+              class="citrix-logo"
+              :src="url"
+              :fit="fit"/>
+          </a>
+          <a href="/#/create/job"><span class="home_title">DevOps Platform</span></a>
         </div>
         <div>
           <el-dropdown style="color: black" @command="handleCommand">
@@ -34,27 +36,25 @@
               @close="handleClose"
               router="true"
               style="width: 100%">
-              <el-menu-item>
-                <i class="el-icon-menu"></i>
-                <span slot="title">Overview</span>
-              </el-menu-item>
+              <el-submenu index="1">
+                <template slot="title">
+                  <i class="el-icon-location"></i>
+                  <span>Project</span>
+                </template>
+                  <el-menu-item v-on:click="jumpToJenkins(project.name)" v-for="(project, index) in projectList" :key="index" class="bg-gray">
+                    <i class="el-icon-s-data"></i>
+                    <span slot="title">{{project.name}}</span>
+                  </el-menu-item>
+              </el-submenu>
               <el-menu-item
-                index="/create/job"
-                class="bg-gray">
+                index="/create/job">
                 <i class="el-icon-circle-plus-outline"></i>
                 <span slot="title">Create</span>
               </el-menu-item>
               <el-menu-item
-                index="/config/server"
-                class="bg-gray">
-                <i class="el-icon-upload"></i>
-                <span slot="title">Server</span>
-              </el-menu-item>
-              <el-menu-item
-                index="/config/jkfile"
-                class="bg-gray">
-                <i class="el-icon-edit"></i>
-                <span slot="title">Jenkinsfile</span>
+                index="/profile">
+                <i class="el-icon-s-custom"></i>
+                <span slot="title">Account Center</span>
               </el-menu-item>
             </el-menu>
             <div class="menu-bottom">
@@ -87,12 +87,15 @@
 
     </el-container>
     <footer class="home-footer">
-      <span class="foot_title">© 1999-2019 Citrix Systems, Inc. 保留所有权利。</span>
+      <span class="foot_title">© 1999-2019 Citrix Systems, Inc. All rights reserved.</span>
     </footer>
   </div>
 </template>
 <script>
   export default {
+    mounted: function () {
+      this.initData();
+    },
     methods: {
       handleCommand(cmd) {
         var _this = this;
@@ -113,12 +116,27 @@
           });
         }
       },
-
+      initData() {
+        var _this = this;
+        this.postRequest("/project/all", {
+          author: this.user.name
+        }).then(resp => {
+          if (resp && resp.status == 200) {
+            var data = resp.data.obj;
+            console.log(data.obj);
+            _this.projectList = data;
+          }
+        })
+      },
+      jumpToJenkins(name) {
+        window.open('http://3.15.149.72:8080/job/' + name);
+      }
     },
     data() {
       return {
         url: 'https://raw.githubusercontent.com/PeterBrave/MardownPic/master/citrix-logo.jpg',
         fit: 'contain',
+        projectList: [],
       }
     },
     computed: {
@@ -146,13 +164,6 @@
     width: 100%;
   }
 
-  .citrix-logo {
-    width: 80px;
-    height: auto;
-    vertical-align: middle;
-    padding-left: 12px;
-  }
-
   .home-aside {
     background-color: #ececef;
     line-height: unset;
@@ -168,7 +179,7 @@
   }
 
   .el-submenu .el-menu-item {
-    width: 180px;
+    width: 100%;
     min-width: 175px;
   }
   .menu-bottom {

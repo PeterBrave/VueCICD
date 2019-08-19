@@ -29,8 +29,8 @@
         },
         checked: true,
         loginForm: {
-          username: 'Kavin',
-          password: '123'
+          username: '',
+          password: ''
         },
         loading: false
       }
@@ -45,12 +45,13 @@
         }).then(resp=> {
           _this.loading = false;
           if (resp && resp.status == 200) {
+            window.localStorage.clear();
             var data = resp.data;
             _this.$store.commit('login', data.obj);
             console.log(data.obj);
             var path = _this.$route.query.redirect;
             _this.$router
-              .replace({path: path == '/' || path == undefined ? '/create/job' : path});
+              .replace({path: path == '/' || path == undefined ? '/profile' : path});
           }
         });
       },

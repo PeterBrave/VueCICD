@@ -5,19 +5,27 @@
       <el-step title="Server" icon="el-icon-upload"></el-step>
       <el-step title="Jenkinsfile" icon="el-icon-edit"></el-step>
     </el-steps>
-    <el-form label-width="80px" :model="formLabelAlign">
-      <el-form-item label=" Server:">
-        <el-select v-model="formLabelAlign.serverId" placeholder="Please Select Server" class="form">
-          <el-option v-for="(serverInfo, index) in serverList" :key="index" :label="serverInfo.serverName" :value="serverInfo.serverId"></el-option>
-        </el-select>
-      </el-form-item>
-    </el-form>
-    <div class="monaco-container" style="text-align: left">
-      <div class="file-name">Please Input Bash Script</div>
-      <div ref="container" class="monaco-editor" style="height: 250px;"></div>
-    </div>
-    <el-button class="button" type="primary" plain @click="submitBashToServer">Submit</el-button>
 
+    <div style="display: inline-block; width: 98%; text-align: left">
+      <div class="fl-left">
+        <div class="new-pipeline">New Pipeline</div>
+        <div style="display: flex">
+          <div class="title">Select your environment</div>
+          <el-form label-width="20px" :model="formLabelAlign">
+            <el-form-item>
+              <el-select v-model="formLabelAlign.serverId" placeholder="Select environment" class="form">
+                <el-option v-for="(serverInfo, index) in serverList" :key="index" :label="serverInfo.serverName" :value="serverInfo.serverId"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+      <button class="fl-right run-button" @click="submitBashToServer">Save and run</button>
+    </div>
+    <div class="monaco-container">
+      <div class="file-name">Please Input Bash Script</div>
+      <div ref="container" class="monaco-editor"></div>
+    </div>
   </div>
 
 </template>
@@ -37,6 +45,9 @@
           }, {
             serverName: "Linux Server",
             serverId: 2
+          }, {
+            serverName: "Docker",
+            serverId: 3
           }
         ],
         codes: '',
@@ -70,24 +81,57 @@
       submitBashToServer() {
         var _this = this;
         this.loading = true;
-        this.postRequest('/server/run', {
-          serverId: this.formLabelAlign.serverId,
-          bashContent: this.monacoEditor.getValue()
-        }).then(resp=> {
+        var typeId = this.formLabelAlign.serverId;
+        window.localStorage.setItem('jenkinsId', JSON.stringify(typeId));
+        var projectName = JSON.parse(window.localStorage.getItem('projectName'));
+        var repoName = JSON.parse(window.localStorage.getItem('repoName'));
+        var githubName = this.user.githubName;
+        var language = JSON.parse(window.localStorage.getItem('language'));
+        console.log("type = " + typeId);
+        this.postRequest('/jenkins/create', {
+          projectName: projectName,
+          repo: repoName,
+          githubName: githubName,
+          type: typeId,
+        }).then(resp => {
           _this.loading = false;
           if (resp && resp.status == 200) {
-            var data = resp.data;
-            alert(data);
-            this.$router.push({path:'/config/jkfile'});
-            this.$message('Submit Successfully!');
-
+            this.postRequest('/project/add', {
+              name: projectName,
+              author: this.user.name,
+              language: language,
+              type: typeId,
+            }).then(resp => {
+              if (resp && resp.status == 200 &&typeId === 3) {
+                this.$router.push({path:'/config/jkfile'});
+              } else {
+                this.postRequest('/server/run', {
+                  serverId: this.formLabelAlign.serverId,
+                  bashContent: this.monacoEditor.getValue()
+                }).then(resp=> {
+                  _this.loading = false;
+                  if (resp && resp.status == 200) {
+                    var data = resp.data;
+                    alert(data);
+                    this.$router.push({path:'/config/jkfile'});
+                    this.$message('Submit Successfully!');
+                  }
+                })
+              }
+            })
           }
         })
+
       }
     },
     mounted () {
       this.initEditor();
     },
+    computed: {
+      user() {
+        return this.$store.state.user;
+      }
+    }
 
   }
 </script>
