@@ -43,7 +43,11 @@ podTemplate(
         container('npm') {
 	   /*Clone code form github*/
             stage('Clone') {
-                sh "git clone -b new-ui https://github.com/PeterBrave/VueCICD.git"
+                 stage('Clone') {
+                checkout ([$class: 'GitSCM', branches: [[name: '*/new-ui']], doGenerateSubmoduleConfigurations: false, extensions: [],
+                           submoduleCfg: [], userRemoteConfigs: [[credentialsId:  '96ce8238-69cc-4acf-b2e9-ae6bb3818112',
+                                                                  url: 'https://github.com/PeterBrave/VueCICD.git']]]) 
+            }
             }
             /*Build project*/
             stage('Build'){
