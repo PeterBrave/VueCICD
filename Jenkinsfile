@@ -4,7 +4,6 @@ def tag_environment_docker_name = "zxpwin/npm-image" //The tag of slave image, z
 
 
 /*Setup the environment of the slave*/
-/*
 podTemplate(
     containers: [containerTemplate(name: 'environment', image: 'docker', ttyEnabled: true, command: 'cat')], 
     volumes: [hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')],
@@ -32,7 +31,7 @@ podTemplate(
     	}
 	}
 }
-*/
+
 podTemplate(
     containers: [containerTemplate(name: 'npm', image: "${tag_environment_docker_name}", ttyEnabled: true, command: 'cat')], 
     //volumes: [hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')],
@@ -44,7 +43,7 @@ podTemplate(
         container('npm') {
 	   /*Clone code form github*/
             stage('Clone') {
-                git clone -b new-ui https://github.com/PeterBrave/VueCICD.git
+                sh "git clone -b new-ui https://github.com/PeterBrave/VueCICD.git"
             }
             /*Build project*/
             stage('Build'){
