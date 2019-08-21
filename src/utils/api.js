@@ -3,7 +3,7 @@ import {Message} from 'element-ui'
 axios.interceptors.request.use(config => {
   return config;
 }, err => {
-  Message.error({message: '请求超时!'});
+  Message.error({message: 'Time out!'});
   // return Promise.resolve(err);
 })
 axios.interceptors.response.use(data => {
@@ -17,16 +17,16 @@ axios.interceptors.response.use(data => {
   return data;
 }, err => {
   if (err.response.status == 504 || err.response.status == 404) {
-    Message.error({message: '服务器被吃了⊙﹏⊙∥'});
+    Message.error({message: 'Cannot find server!'});
   } else if (err.response.status == 403) {
-    Message.error({message: '权限不足,请联系管理员!'});
+    Message.error({message: 'You have no permission! Please contact the administrator.'});
   } else if (err.response.status == 401) {
     Message.error({message: err.response.data.msg});
   } else {
     if (err.response.data.msg) {
       Message.error({message: err.response.data.msg});
     }else{
-      Message.error({message: '未知错误!'});
+      Message.error({message: 'Unknown errors!'});
     }
   }
   // return Promise.resolve(err);

@@ -72,7 +72,7 @@
             <el-col :span="15">
               <div class="profile-right">
                 <div style="display: inline-block; width: 100%;border-bottom: 1px solid gray;">
-                  <div class="project-title">Citrix DevOps CI/CD Project</div>
+                  <div class="project-title">My Projects</div>
                   <button class="create-button" style="float: right" v-on:click="createNewJenkinsJob">Create New</button>
                 </div>
                 <div class="repo-list" v-for="project in projectList">
