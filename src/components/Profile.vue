@@ -27,7 +27,7 @@
         </el-header>
         <el-main class="setting-profile-main" style="bottom: 30px">
           <el-row>
-            <el-col :span="9">
+            <el-col :span="10">
               <div class="profile-left">
                 <img :src="user.userface" class="profile-avatar">
                 <div class="profile-name">
@@ -69,11 +69,11 @@
                 </div>
               </div>
             </el-col>
-            <el-col :span="15">
+            <el-col :span="14">
               <div class="profile-right">
                 <div style="display: inline-block; width: 100%;border-bottom: 1px solid gray;">
                   <div class="project-title">My Projects</div>
-                  <button class="create-button" style="float: right" v-on:click="createNewJenkinsJob">Create New</button>
+                  <button class="create-button" style="float: right" v-on:click="createNewJenkinsJob">Create</button>
                 </div>
                 <div class="repo-list" v-for="project in projectList">
                   <img class="repo-img" :src="user.userface">

@@ -26,7 +26,7 @@
           </el-dropdown>
         </div>
       </el-header>
-      <el-main class="setting-profile-main">
+      <el-main class="setting-profile-main" style="bottom: 30px">
         <el-row>
           <el-col :span="24">
             <div class="profile-left">
@@ -122,33 +122,53 @@
         }
       },
       submitModify: function () {
-        console.log("here");
-        var _this = this;
-        this.loading = true;
-        this.postRequest('/user/modify', {
-          name: this.user.name,
-          githubName: this.user.githubName,
-          githubToken: this.user.githubToken,
-          email: this.user.email,
-          address: this.user.address,
-          phone: this.user.phone
-        }).then(resp => {
-          _this.loading = false;
-          if (resp && resp.status == 200) {
-            var data = resp.data;
-            _this.$store.commit('login', data.obj);
-            _this.$router.push("/profile");
-          } else {
-            this.$message('update error');
-          }
-        })
+        if (!this.user.name) {
+          alert('Name is null!')
+        }
+        if (!this.user.githubName) {
+          alert('Github Name is null!')
+        }
+        if (!this.user.githubToken) {
+          alert('Github Token is null!')
+        }
+        if (!this.user.email) {
+          alert('E-mail is null!')
+        }
+        if (!this.user.address) {
+          alert('Address is null!')
+        }
+        if (!this.user.phone) {
+          alert('Phone is null!')
+        }
+        if (this.user.name && this.user.githubName && this.user.githubToken && this.user.email && this.user.address && this.user.phone) {
+          console.log("here");
+          var _this = this;
+          this.loading = true;
+          this.postRequest('/user/modify', {
+            name: this.user.name,
+            githubName: this.user.githubName,
+            githubToken: this.user.githubToken,
+            email: this.user.email,
+            address: this.user.address,
+            phone: this.user.phone
+          }).then(resp => {
+            _this.loading = false;
+            if (resp && resp.status == 200) {
+              var data = resp.data;
+              _this.$store.commit('login', data.obj);
+              _this.$router.push("/profile");
+            } else {
+              this.$message('update error');
+            }
+          })
+        }
       }
-    },
-    computed: {
-      user() {
-        return this.$store.state.user;
+      },
+      computed: {
+        user() {
+          return this.$store.state.user;
+        }
       }
-    }
   }
 
 </script>
