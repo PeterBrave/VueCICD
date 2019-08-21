@@ -79,20 +79,20 @@
   }
 </script>
 <style>
-  .citrix-logo{
-    position: absolute;
-    left: 45px;
-    top: 20px;
-  }
+  /*.citrix-logo{*/
+  /*  position: absolute;*/
+  /*  left: 45px;*/
+  /*  top: 20px;*/
+  /*}*/
   .textLogin{
     position: absolute;
     right: 35px;
-    top: 20px;
+    top: 15px;
   }
   .textSignup{
     position: absolute;
     right: 95px;
-    top: 20px;
+    top: 15px;
   }
   .login_title {
     margin: 0px auto 40px auto;
