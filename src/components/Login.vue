@@ -16,14 +16,12 @@
       <el-input type="password" v-model="loginForm.password"
                 auto-complete="off" placeholder="Password"></el-input>
     </el-form-item>
-    <el-checkbox class="login_remember" v-model="checked"
-                 label-position="left">Remember the Password</el-checkbox>
     <el-form-item style="width: 100% ">
       <el-button type="primary" style="width:100%" @click="submitClick">Login</el-button>
 <!--      <el-button type="primary" style="width: 35%" @click="submitRegister">Sign up</el-button>-->
     </el-form-item>
-    <div style="font-size: 13px">
-      New User? <el-link style="font-size: 12px; color: #409EFF" @click="submitRegister">Sign Up</el-link>
+    <div style="font-size: 12px">
+      New User? <span style="font-size: 12px; color: #409EFF" @click="submitRegister">Sign Up</span>
     </div>
   </el-form>
   </el-container>
@@ -36,7 +34,6 @@
           account: [{required: false, message: 'Please Enter the Username', trigger: 'blur'}],
           checkPass: [{required: false, message: 'Please Enter the Password', trigger: 'blur'}]
         },
-        checked: true,
         loginForm: {
           username: '',
           password: ''
@@ -92,23 +89,9 @@
     right: 95px;
     top: 20px;
   }
-  .login-container {
-    border-radius: 15px;
-    background-clip: padding-box;
-    margin: 180px auto;
-    width: 350px;
-    padding: 35px 35px 15px 35px;
-    background: #fff;
-    border: 1px solid #eaeaea;
-    box-shadow: 0 0 25px #cac6c6;
-  }
   .login_title {
     margin: 0px auto 40px auto;
     text-align: center;
     color: #505458;
-  }
-  .login_remember {
-    margin: 0px 0px 35px 0px;
-    text-align: left;
   }
 </style>
