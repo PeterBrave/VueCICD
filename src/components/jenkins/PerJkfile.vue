@@ -5,12 +5,12 @@
       <el-step title="Server" icon="el-icon-upload"></el-step>
       <el-step title="Jenkinsfile" icon="el-icon-edit"></el-step>
     </el-steps>
-    <div style="display: inline-block; width: 98%; text-align: left">
-      <div class="fl-left">
+    <div class="header-section">
+      <div>
         <div class="new-pipeline">New Pipeline</div>
         <div class="title">Review your jenkins file</div>
       </div>
-      <button class="fl-right run-button" @click="submitJenkinsfile">Save and run</button>
+      <button class="run-button" style="align-self: flex-end" @click="submitJenkinsfile">Save and run</button>
     </div>
     <div class="monaco-container">
       <div class="file-name">JenkinsFile</div>
@@ -36,9 +36,11 @@
           language: JSON.parse(window.localStorage.getItem('language')),
           githubName: this.user.githubName,
           githubToken: this.user.githubToken,
+          type: JSON.parse(window.localStorage.getItem('jenkinsId')),
         }).then(resp => {
           if (resp && resp.status == 200) {
-            this.codes = resp.data;
+            console.log("resp.data = " + resp.data.obj);
+            this.codes = resp.data.obj;
             this.initEditor();
           }
         });

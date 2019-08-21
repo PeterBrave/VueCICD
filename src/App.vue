@@ -164,7 +164,6 @@
   .monaco-container {
     height: auto;
     margin-bottom: 20px;
-    width: 98%;
     background-color: white;
     box-shadow: 0 0 2px gray;
     border-radius: 2px;
@@ -181,13 +180,10 @@
     font-size: 16px;
     line-height: 20px;
     font-weight: bold;
-    margin-top: 40px;
     padding: 6px 12px;
     background-color: rgba(0,120,212,1);
     color: white;
     border-radius: 2px;
-    position: relative;
-    bottom: 0px;
   }
   .fl-right {
     float: right;
@@ -200,5 +196,12 @@
     background: #fff;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
+  }
+  .header-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    margin-bottom: 22px;
   }
 </style>

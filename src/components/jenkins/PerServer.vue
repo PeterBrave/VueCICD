@@ -6,21 +6,22 @@
       <el-step title="Jenkinsfile" icon="el-icon-edit"></el-step>
     </el-steps>
 
-    <div style="display: inline-block; width: 98%; text-align: left">
-      <div class="fl-left">
+    <div class="header-section">
+      <div>
         <div class="new-pipeline">New Pipeline</div>
-        <div style="display: flex">
+        <div class="sub-header-section">
           <div class="title">Select your environment</div>
           <el-form label-width="20px" :model="formLabelAlign">
-            <el-form-item>
+            <el-form-item style="margin: 0px">
               <el-select v-model="formLabelAlign.serverId" placeholder="Select environment" class="form">
                 <el-option v-for="(serverInfo, index) in serverList" :key="index" :label="serverInfo.serverName" :value="serverInfo.serverId"></el-option>
               </el-select>
             </el-form-item>
           </el-form>
+          <button class="run-button" style="align-self: flex-end; margin-left: 20px" @click="submitBash">Submit</button>
         </div>
       </div>
-      <button class="fl-right run-button" @click="submitBashToServer">Save and run</button>
+      <button class="run-button" style="align-self: flex-end" @click="nextStep">Next</button>
     </div>
     <div class="monaco-container">
       <div class="file-name">Please Input Bash Script</div>
@@ -78,7 +79,7 @@
           editorOptions: this.editorOptions // 同codes
         })
       },
-      submitBashToServer() {
+      nextStep() {
         var _this = this;
         this.loading = true;
         var typeId = this.formLabelAlign.serverId;
@@ -94,7 +95,6 @@
           githubName: githubName,
           type: typeId,
         }).then(resp => {
-          _this.loading = false;
           if (resp && resp.status == 200) {
             this.postRequest('/project/add', {
               name: projectName,
@@ -102,25 +102,32 @@
               language: language,
               type: typeId,
             }).then(resp => {
-              if (resp && resp.status == 200 &&typeId === 3) {
+              _this.loading = false;
+              if (resp && resp.status == 200) {
                 this.$router.push({path:'/config/jkfile'});
-              } else {
-                this.postRequest('/server/run', {
-                  serverId: this.formLabelAlign.serverId,
-                  bashContent: this.monacoEditor.getValue()
-                }).then(resp=> {
-                  _this.loading = false;
-                  if (resp && resp.status == 200) {
-                    var data = resp.data;
-                    alert(data);
-                    this.$router.push({path:'/config/jkfile'});
-                    this.$message('Submit Successfully!');
-                  }
-                })
               }
             })
           }
         })
+      },
+      submitBash() {
+        var _this = this;
+        this.loading = true;
+        var typeId = this.formLabelAlign.serverId;
+        if (typeId == 1 || typeId == 2) {
+          this.postRequest('/server/run', {
+            serverId: this.formLabelAlign.serverId,
+            bashContent: this.monacoEditor.getValue()
+          }).then(resp=> {
+            _this.loading = false;
+            if (resp && resp.status == 200) {
+              var data = resp.data;
+              alert(data);
+            }
+          })
+        } else {
+          alert("Only server can press this button!");
+        }
 
       }
     },
@@ -136,5 +143,7 @@
   }
 </script>
 <style>
-
+  .sub-header-section {
+    display: flex;
+  }
 </style>

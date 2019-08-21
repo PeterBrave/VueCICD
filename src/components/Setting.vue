@@ -80,9 +80,7 @@
               </el-row>
               <button class="setting-button" @click="submitModify">Save change</button>
             </div>
-
           </el-col>
-
         </el-row>
       </el-main>
       <footer class="home-footer">
@@ -141,7 +139,6 @@
           alert('Phone is null!')
         }
         if (this.user.name && this.user.githubName && this.user.githubToken && this.user.email && this.user.address && this.user.phone) {
-          console.log("here");
           var _this = this;
           this.loading = true;
           this.postRequest('/user/modify', {
@@ -150,7 +147,8 @@
             githubToken: this.user.githubToken,
             email: this.user.email,
             address: this.user.address,
-            phone: this.user.phone
+            phone: this.user.phone,
+            userface: 'https://avatars.githubusercontent.com/' + this.user.githubName,
           }).then(resp => {
             _this.loading = false;
             if (resp && resp.status == 200) {

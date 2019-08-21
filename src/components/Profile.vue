@@ -191,13 +191,12 @@
 
 <style scoped>
   .profile-left {
-    /*border-right: 1px solid gray;*/
     height: auto;
     padding-left: 80px;
     padding-right: 20px;
+    border-right: 1px solid gray;
   }
   .profile-right {
-    border-left: 1px solid gray;
     height: auto;
     margin: 4px 12px;
     padding-left: 30px;
