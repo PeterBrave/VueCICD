@@ -1,7 +1,10 @@
 <template>
   <el-container>
   <div>
-    <el-link class="textcitrix" style="font-size: 22px; color: #409EFF; font-weight: 600">Citrix CI/CD</el-link>
+    <img
+      class="citrix-logo"
+      :src="url"
+      :fit="fit"/>
     <el-link class="textLogin" style="font-size: 15px; color: #409EFF; " @click="submitLogin">Login</el-link>
     <el-link class="textSignup" style="font-size: 15px; " @click="submitSignup">SignUp</el-link>
   </div>
@@ -21,7 +24,7 @@
 <!--      <el-button type="primary" style="width: 35%" @click="submitRegister">Sign up</el-button>-->
     </el-form-item>
     <div style="font-size: 12px">
-      New User? <span style="font-size: 12px; color: #409EFF" @click="submitRegister">Sign Up</span>
+      New User?<span style="font-size: 12px; color: #409EFF" @click="submitRegister">Sign Up</span>
     </div>
   </el-form>
   </el-container>
@@ -30,6 +33,8 @@
   export default{
     data(){
       return {
+        url: 'https://raw.githubusercontent.com/PeterBrave/MardownPic/master/citrix-logo.jpg',
+        fit: 'contain',
         rules: {
           account: [{required: false, message: 'Please Enter the Username', trigger: 'blur'}],
           checkPass: [{required: false, message: 'Please Enter the Password', trigger: 'blur'}]
@@ -74,7 +79,7 @@
   }
 </script>
 <style>
-  .textcitrix{
+  .citrix-logo{
     position: absolute;
     left: 45px;
     top: 20px;
