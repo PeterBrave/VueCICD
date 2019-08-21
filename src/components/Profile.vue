@@ -1,4 +1,4 @@
-<template>
+<template xmlns:el-row="http://www.w3.org/1999/html">
     <div>
       <el-container>
         <el-header class="home-header" height="48px">
@@ -25,9 +25,9 @@
             </el-dropdown>
           </div>
         </el-header>
-        <el-main class="setting-profile-main">
+        <el-main class="setting-profile-main" style="bottom: 30px">
           <el-row>
-            <el-col :span="10">
+            <el-col :span="9">
               <div class="profile-left">
                 <img :src="user.userface" class="profile-avatar">
                 <div class="profile-name">
@@ -69,7 +69,7 @@
                 </div>
               </div>
             </el-col>
-            <el-col :span="14">
+            <el-col :span="15">
               <div class="profile-right">
                 <div style="display: inline-block; width: 100%;border-bottom: 1px solid gray;">
                   <div class="project-title">Citrix DevOps CI/CD Project</div>
@@ -191,14 +191,16 @@
 
 <style scoped>
   .profile-left {
-    border-right: 1px solid gray;
-    height: 700px;
-    padding-left: 100px;
-    padding-right: 50px;
+    /*border-right: 1px solid gray;*/
+    height: auto;
+    padding-left: 80px;
+    padding-right: 20px;
   }
   .profile-right {
+    border-left: 1px solid gray;
     height: auto;
     margin: 4px 12px;
+    padding-left: 30px;
   }
   .profile-avatar {
     width: 160px;

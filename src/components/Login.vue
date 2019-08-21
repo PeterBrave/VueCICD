@@ -1,7 +1,13 @@
 <template>
+  <el-container>
+  <div>
+    <el-link class="textcitrix" style="font-size: 22px; color: #409EFF; font-weight: 600">Citrix CI/CD</el-link>
+    <el-link class="textLogin" style="font-size: 15px; color: #409EFF; " @click="submitLogin">Login</el-link>
+    <el-link class="textSignup" style="font-size: 15px; " @click="submitSignup">SignUp</el-link>
+  </div>
   <el-form :rules="rules" class="login-container" label-position="left"
            label-width="0px" v-loading="loading">
-    <h3 class="login_title">Login System</h3>
+    <h3 class="login_title">Login to CI/CD System</h3>
     <el-form-item prop="account">
       <el-input type="text" v-model="loginForm.username"
                 auto-complete="off" placeholder="Account"></el-input>
@@ -13,19 +19,22 @@
     <el-checkbox class="login_remember" v-model="checked"
                  label-position="left">Remember the Password</el-checkbox>
     <el-form-item style="width: 100% ">
-      <el-button type="primary" style="width: 35%" @click="submitClick">Sign in</el-button>
-      <el-button type="primary" style="width: 35%" @click="submitRegister">Sign up</el-button>
+      <el-button type="primary" style="width:100%" @click="submitClick">Login</el-button>
+<!--      <el-button type="primary" style="width: 35%" @click="submitRegister">Sign up</el-button>-->
     </el-form-item>
-
+    <div style="font-size: 13px">
+      New User? <el-link style="font-size: 12px; color: #409EFF" @click="submitRegister">Sign Up</el-link>
+    </div>
   </el-form>
+  </el-container>
 </template>
 <script>
   export default{
     data(){
       return {
         rules: {
-          account: [{required: true, message: 'Please Enter the Username', trigger: 'blur'}],
-          checkPass: [{required: true, message: 'Please Enter the Password', trigger: 'blur'}]
+          account: [{required: false, message: 'Please Enter the Username', trigger: 'blur'}],
+          checkPass: [{required: false, message: 'Please Enter the Password', trigger: 'blur'}]
         },
         checked: true,
         loginForm: {
@@ -36,6 +45,12 @@
       }
     },
     methods: {
+      submitLogin: function(){
+        this.$router.push("/");
+      },
+      submitSignup: function(){
+        this.$router.push("/register");
+      },
       submitClick: function () {
         var _this = this;
         this.loading = true;
@@ -62,6 +77,21 @@
   }
 </script>
 <style>
+  .textcitrix{
+    position: absolute;
+    left: 45px;
+    top: 20px;
+  }
+  .textLogin{
+    position: absolute;
+    right: 35px;
+    top: 20px;
+  }
+  .textSignup{
+    position: absolute;
+    right: 95px;
+    top: 20px;
+  }
   .login-container {
     border-radius: 15px;
     background-clip: padding-box;
