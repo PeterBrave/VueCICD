@@ -87,7 +87,8 @@
                   <div class="repo-language">
                     <span class="repo-language-color" :style="{background: project.color}"></span>
                     <span>{{project.language}}</span>
-                    <button class="delete-button" v-on:click="deleteProject(project.name)">delete</button>
+<!--                    <button class="delete-button" v-on:click="deleteProject(project.name)"></button>-->
+                    <span href="#" class="delete" @click="deleteProject(project.name)"></span>
                   </div>
                 </div>
               </div>
@@ -274,6 +275,27 @@
     font-weight: 400;
     padding: 12px 0;
     float: left;
+  }
+
+  .delete {
+    position: absolute;
+    width: 22px;
+    right: 26px;
+    margin-top: 4px;
+  }
+  .delete:before, .delete:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 14px;
+    width: 2px;
+    background-color: red;
+  }
+  .delete:before {
+    transform: rotate(45deg);
+  }
+  .delete:after {
+    transform: rotate(-45deg);
   }
   .delete-button {
     border: none;
