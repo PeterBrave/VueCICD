@@ -10,7 +10,7 @@
         <div class="new-pipeline">New Pipeline</div>
         <div class="title">Review your jenkins file</div>
       </div>
-      <button class="run-button" style="align-self: flex-end" @click="submitJenkinsfile">Save and run</button>
+      <button class="run-button" style="align-self: flex-end; margin-right: 40px" @click="submitJenkinsfile">Save and run</button>
     </div>
     <div class="monaco-container">
       <div class="file-name">JenkinsFile</div>

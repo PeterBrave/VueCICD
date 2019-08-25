@@ -21,7 +21,7 @@
           <button class="run-button" style="align-self: flex-end; margin-left: 20px" @click="submitBash">Submit</button>
         </div>
       </div>
-      <button class="run-button" style="align-self: flex-end" @click="nextStep">Next</button>
+      <button class="run-button" style="align-self: flex-end; margin-right: 40px" @click="nextStep">Next</button>
     </div>
     <div class="monaco-container">
       <div class="file-name">Please Input Bash Script</div>

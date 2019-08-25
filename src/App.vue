@@ -159,10 +159,11 @@
     width: 12px;
   }
   .monaco-editor {
-    height: 512px;
+    height: 80%;
   }
   .monaco-container {
-    height: auto;
+    height: 90%;
+    width: 96%;
     margin-bottom: 20px;
     background-color: white;
     box-shadow: 0 0 2px gray;

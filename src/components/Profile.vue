@@ -87,7 +87,6 @@
                   <div class="repo-language">
                     <span class="repo-language-color" :style="{background: project.color}"></span>
                     <span>{{project.language}}</span>
-<!--                    <button class="delete-button" v-on:click="deleteProject(project.name)"></button>-->
                     <span href="#" class="delete" @click="deleteProject(project.name)"></span>
                   </div>
                 </div>
@@ -195,12 +194,13 @@
     height: auto;
     padding-left: 80px;
     padding-right: 20px;
-    border-right: 1px solid gray;
+    /*border-right: 1px solid gray;*/
   }
   .profile-right {
     height: auto;
     margin: 4px 12px;
     padding-left: 30px;
+    border-left: 1px solid gray;
   }
   .profile-avatar {
     width: 160px;
@@ -296,17 +296,6 @@
   }
   .delete:after {
     transform: rotate(-45deg);
-  }
-  .delete-button {
-    border: none;
-    font-size: 12px;
-    line-height: 14px;
-    font-weight: bold;
-    padding: 2px 6px;
-    background-color: rgba(0,120,212,1);
-    color: white;
-    border-radius: 2px;
-    float: right;
   }
   .create-button {
     border: none;

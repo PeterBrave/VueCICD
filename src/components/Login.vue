@@ -79,11 +79,6 @@
   }
 </script>
 <style>
-  /*.citrix-logo{*/
-  /*  position: absolute;*/
-  /*  left: 45px;*/
-  /*  top: 20px;*/
-  /*}*/
   .textLogin{
     position: absolute;
     right: 35px;

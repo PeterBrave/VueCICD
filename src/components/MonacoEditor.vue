@@ -1,6 +1,6 @@
 <template>
   <div class="monaco-container" style="text-align: left">
-    <div ref="container" class="monaco-editor" style="height: 250px;"></div>
+    <div ref="container" class="monaco-editor" ></div>
     <el-button type="primary" @click="sendContext">提交</el-button>
   </div>
 
