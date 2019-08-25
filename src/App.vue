@@ -163,8 +163,9 @@
   }
   .monaco-container {
     height: auto;position: fixed;bottom: 10px;top: 220px;
+    right: 58px; left: 295px;
     text-align: left;
-    width: 75%;
+    /*width: 75%;*/
     margin-bottom: 22px;
     background-color: white;
     box-shadow: 0 0 2px gray;
