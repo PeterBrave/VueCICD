@@ -41,15 +41,15 @@
           bashContent: '',
         },
         serverList: [{
-            serverName: "Windows Server",
-            serverId: 1
-          }, {
-            serverName: "Linux Server",
-            serverId: 2
-          }, {
-            serverName: "Docker",
-            serverId: 3
-          }
+          serverName: "Windows Server",
+          serverId: 1
+        }, {
+          serverName: "Linux Server",
+          serverId: 2
+        }, {
+          serverName: "Docker",
+          serverId: 3
+        }
         ],
         codes: '',
         readOnly: false,
@@ -147,3 +147,9 @@
     display: flex;
   }
 </style>
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 <template xmlns:el-row="http://www.w3.org/1999/html">
     <div>
       <el-container>
-        <el-header class="home-header" height="48px">
+        <el-header class="home-header" style="height: 48px;" >
           <div>
             <a href="/#/create/job">
               <img

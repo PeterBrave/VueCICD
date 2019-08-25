@@ -1,5 +1,5 @@
 <template>
-  <div class="monaco-container" style="text-align: left">
+  <div class="monaco-container">
     <div ref="container" class="monaco-editor" ></div>
     <el-button type="primary" @click="sendContext">提交</el-button>
   </div>

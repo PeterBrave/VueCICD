@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container class="home-container">
-      <el-header class="home-header" height="48px">
+      <el-header class="home-header" style="height: 48px;">
         <div>
           <a href="/#/create/job">
             <img
@@ -169,7 +169,7 @@
     line-height: unset;
     position: fixed;
     left: 0;
-    top: 48px;
+    top: 5%;
     bottom: 0;
   }
 

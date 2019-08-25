@@ -72,7 +72,7 @@
     text-align: left;
   }
   .title {
-    font-size: 28px;
+    font-size: 25px;
     font-weight: bold;
     line-height: 40px;
     letter-spacing: -.04em;
@@ -84,7 +84,7 @@
     text-align: left;
     width: 100%;
     margin-top: 20px;
-    height: 100%;
+    /*height: 100%;*/
   }
   .process {
     margin-top: -20px;
@@ -162,9 +162,10 @@
     height: 80%;
   }
   .monaco-container {
-    height: 90%;
-    width: 96%;
-    margin-bottom: 20px;
+    height: auto;position: fixed;bottom: 10px;top: 220px;
+    text-align: left;
+    width: 75%;
+    margin-bottom: 22px;
     background-color: white;
     box-shadow: 0 0 2px gray;
     border-radius: 2px;
@@ -203,6 +204,6 @@
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
-    margin-bottom: 22px;
+    margin-bottom: 2%;
   }
 </style>
